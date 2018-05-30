@@ -23,6 +23,7 @@ class Questions extends Migration
             $table->string('answer');
             $table->integer('academic_session',false,5);
             $table->integer('course_id',false)->unsigned();
+            $table->integer('faculty_id',false)->unsigned();
             $table->string('status');
             $table->integer('department_id',false)->unsigned();
             $table->timestamps();
@@ -30,6 +31,7 @@ class Questions extends Migration
         Schema::table('questions', function (Blueprint $table) {
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('department_id')->references('id')->on('department');
+            $table->foreign('faculty_id')->references('id')->on('faculty');
         });
     }
 

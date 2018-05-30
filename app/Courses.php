@@ -12,4 +12,8 @@ class Courses extends Model
     {
     	return $this->belongsTo('QuestGen\Departments','department_id');
     }
+    public function User()
+    {
+    	return $this->hasMany('QuestGen\User','course_id');
+    }
 }

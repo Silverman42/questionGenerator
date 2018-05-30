@@ -50,8 +50,8 @@ class DepartmentController extends Controller
     {
         //validate Inputs
         $validator = $request->validate([
-         'name'=>'required|unique:department|alpha|max:50',
-         'description'=>'nullable|string|max:100',
+         'name'=>'required|unique:department|string|max:50|regex:/(^[A-Za-z0-9 ]+$)+/',
+         'description'=>'nullable|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
          'faculty_id'=>'integer'
         ]);
         Departments::create($request->all());
@@ -68,8 +68,8 @@ class DepartmentController extends Controller
     public function update(Request $request, $departments)
     {
         $validator = $request->validate([
-         'name'=>'required|unique:department,name,'.$departments.'|string|max:100',
-         'description'=>'nullable|string|max:100',
+         'name'=>'required|unique:department,name,'.$departments.'|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
+         'description'=>'nullable|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
          'faculty_id'=>'integer'
         ]);
         $department = Departments::where('id',$departments)->update([
@@ -90,5 +90,14 @@ class DepartmentController extends Controller
     public function destroy(Departments $departments)
     {
         //
+    }
+    /**
+     * fetches all departments from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function fetch()
+    {
+        
     }
 }

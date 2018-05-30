@@ -1,21 +1,23 @@
-var appData = (function() {
-  'use strict';
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-  var appData = {
-    hostname: window.location.origin,
-  };
+var appData = function () {
+    'use strict';
 
-  return appData;
-}());
+    var appData = {
+        hostname: window.location.origin
+    };
+
+    return appData;
+}();
 // body...
-var tabSwitch = (function(argument) {
+var tabSwitch = function (argument) {
     var defaultTabButton = '',
         tabButtonArray = [],
         tabArray = [],
         classTabRemove,
         obj;
     return {
-        triggerTabSwitch: function() {
+        triggerTabSwitch: function triggerTabSwitch() {
             for (var i = tabArray.length - 1; i >= 0; i--) {
                 console.log('love');
                 tabArray[i].addClass(classTabRemove);
@@ -26,9 +28,13 @@ var tabSwitch = (function(argument) {
                 $(window.location.hash).removeClass(classTabRemove);
             }
         },
-        clickEvent: function(defaultTabs, tabKeys = [], tabs = [], classRemove) {
+        clickEvent: function clickEvent(defaultTabs) {
+            var tabKeys = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+            var tabs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+            var classRemove = arguments[3];
+
             // body...
-            obj = this
+            obj = this;
             defaultTab = defaultTabs;
             tabButtonArray = tabKeys;
             classTabRemove = classRemove;
@@ -36,7 +42,7 @@ var tabSwitch = (function(argument) {
             console.log(tabButtonArray[1]);
             obj.triggerTabSwitch();
             for (var i = tabButtonArray.length - 1; i >= 0; i--) {
-                tabButtonArray[i].click(function(e) {
+                tabButtonArray[i].click(function (e) {
                     // body...
                     e.preventDefault();
                     window.location.hash = $(this).attr('href');
@@ -45,48 +51,47 @@ var tabSwitch = (function(argument) {
                 });
             }
         }
-    }
-    // body...
-})();
+        // body...
+    };
+}();
 
 //Toggle html element Class
-var classToggle = (function() {
+var classToggle = function () {
     return {
-        remove: function(toggleClass, target) {
+        remove: function remove(toggleClass, target) {
             target.removeClass(toggleClass);
         },
-        add: function(toggleClass, target) {
+        add: function add(toggleClass, target) {
             target.addClass(toggleClass);
         },
-        toggle: function(toggleClass, target) {
+        toggle: function toggle(toggleClass, target) {
             target.toggleClass(toggleClass);
         }
-    }
-})();
+    };
+}();
 
 //Ajax Form submition module
-const FormSubmit = (function() {
+var FormSubmit = function FormSubmit() {
     var ajaxObj;
     var obj;
     var tempFormData;
     var tempFormObject;
     return {
         formObject: "",
-        formData: function() {
+        formData: function formData() {
             tempFormObject = this.formObject;
             tempFormData = new FormData(tempFormObject[0]);
             return tempFormData;
         },
-        contentType:function () {
-          /* body... */
-          if(this.formObject.attr('method') === 'PUT'){
-            return 'application/json';
-          }
-          else{
-            return false;
-          }
+        contentType: function contentType() {
+            /* body... */
+            if (this.formObject.attr('method') === 'PUT') {
+                return 'application/json';
+            } else {
+                return false;
+            }
         },
-        ajaxParam: function() {
+        ajaxParam: function ajaxParam() {
             obj = this;
             return {
                 method: obj.formObject.attr('method'),
@@ -98,28 +103,28 @@ const FormSubmit = (function() {
                 enctype: 'multipart/form-data',
                 processData: false, // tell jQuery not to process the data
                 contentType: obj.contentType(),
-                beforeSend: function() {
-                    obj.beforeAjaxReq()
+                beforeSend: function beforeSend() {
+                    obj.beforeAjaxReq();
                 },
-                success: function(response, status, jqXHR) {
-                    obj.successfullAjaxReq(response, jqXHR)
+                success: function success(response, status, jqXHR) {
+                    obj.successfullAjaxReq(response, jqXHR);
                 },
-                error: function(jqXHR, textStatus, error) {
-                    obj.failedAjaxReq(jqXHR, textStatus, error)
+                error: function error(jqXHR, textStatus, _error) {
+                    obj.failedAjaxReq(jqXHR, textStatus, _error);
                 }
-            }
+            };
         },
         beforeAjaxReq: "",
         successfullAjaxReq: "",
         failedAjaxReq: "",
-        ajaxReq: function() {
+        ajaxReq: function ajaxReq() {
             obj = this;
             $.ajax(obj.ajaxParam());
         }
-    }
-});
+    };
+};
 //Ajax Item search module
-const ItemSearch = (function() {
+var ItemSearch = function ItemSearch() {
     var ajaxObj;
     var obj;
     var tempSearchData;
@@ -127,12 +132,12 @@ const ItemSearch = (function() {
     return {
         searchObject: "",
         paginateNum: 0,
-        formData: function() {
+        formData: function formData() {
             tempSearchObject = this.searchObject;
             tempFormData = tempSearchObject.serialize();
             return tempFormData + "&paginate=" + this.paginateNum;
         },
-        ajaxParam: function() {
+        ajaxParam: function ajaxParam() {
             obj = this;
             return {
                 method: 'GET',
@@ -141,227 +146,333 @@ const ItemSearch = (function() {
                     'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
                 },
                 data: obj.formData(),
-                beforeSend: function() {
-                    obj.beforeAjaxReq()
+                beforeSend: function beforeSend() {
+                    obj.beforeAjaxReq();
                 },
-                success: function(response) {
-                    obj.successfullAjaxReq(response)
+                success: function success(response) {
+                    obj.successfullAjaxReq(response);
                 },
-                error: function(jqXHR, textStatus, error) {
-                    obj.failedAjaxReq(jqXHR, textStatus, error)
+                error: function error(jqXHR, textStatus, _error2) {
+                    obj.failedAjaxReq(jqXHR, textStatus, _error2);
                 }
-            }
+            };
         },
         beforeAjaxReq: "",
         successfullAjaxReq: "",
         failedAjaxReq: "",
-        ajaxReq: function() {
+        ajaxReq: function ajaxReq() {
             obj = this;
             $.ajax(obj.ajaxParam());
         },
-        nextPaginate: function() {
+        nextPaginate: function nextPaginate() {
             this.paginateNum++;
             this.ajaxReq();
         },
-        prevPaginate: function() {
+        prevPaginate: function prevPaginate() {
             if (this.paginateNum > 0) {
                 this.paginateNum--;
                 this.ajaxReq();
             }
         },
-        searchReq: function() {
+        searchReq: function searchReq() {
             this.paginateNum = 0;
             this.ajaxReq();
         }
-    }
-});
+    };
+};
 
-var ModalDataTransfer = (function() {
+/*
+**@decsription : Module for button ajax request
+*/
+var ButtonRequest = function ButtonRequest() {
+    var ajaxObj;
+    var obj;
+    return {
+        action: "",
+        method: "",
+        data: "",
+        ajaxParam: function ajaxParam() {
+            obj = this;
+            return {
+                method: obj.method,
+                url: obj.action,
+                data: obj.data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                },
+                beforeSend: function beforeSend() {
+                    obj.beforeAjaxReq();
+                },
+                success: function success(response) {
+                    obj.successfullAjaxReq(response);
+                },
+                error: function error(jqXHR, textStatus, _error3) {
+                    obj.failedAjaxReq(jqXHR, textStatus, _error3);
+                }
+            };
+        },
+        beforeAjaxReq: "",
+        successfullAjaxReq: "",
+        failedAjaxReq: "",
+        ajaxReq: function ajaxReq() {
+            obj = this;
+            $.ajax(obj.ajaxParam());
+        }
+    };
+};
+
+var ModalDataTransfer = function () {
     'use strict';
+
     var domData;
     var moduleName = {
         domObject: '',
         headerData: '',
         formActionData: '',
         inputData: '',
-        processHeader: function() {
+        processHeader: function processHeader() {
             /* Process header data */
-            if (typeof this.headerData === 'object') {
-                for (var data of Object.keys(this.headerData)) {
-                    domData = this.domObject.parent().parent().find(this.headerData[data]).text();
-                    $(data).text(domData);
+            if (_typeof(this.headerData) === 'object') {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = Object.keys(this.headerData)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var data = _step.value;
+
+                        domData = this.domObject.parent().parent().find(this.headerData[data]).text();
+                        $(data).text(domData);
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
                 }
             }
             return this;
         },
-        processFormAction: function() {
-            if (typeof this.formActionData === 'object') {
-                for (var data of Object.keys(this.formActionData)) {
-                    domData = this.domObject.parent().parent().find(this.formActionData[data]).data('url');
-                    $(data).attr('action', domData);
-                    console.log($(data).attr('action'));
+        processFormAction: function processFormAction() {
+            if (_typeof(this.formActionData) === 'object') {
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+                    for (var _iterator2 = Object.keys(this.formActionData)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var data = _step2.value;
+
+                        domData = this.domObject.parent().parent().find(this.formActionData[data]).data('url');
+                        $(data).attr('action', domData);
+                        console.log($(data).attr('action'));
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
                 }
             }
             return this;
         },
-        processInputData: function() {
-            if (typeof this.inputData === 'object') {
-                for (var data of Object.keys(this.inputData)) {
-                    domData = this.domObject.parent().parent().find(this.inputData[data]).text();
-                    $(data).val(domData);
+        processInputData: function processInputData() {
+            if (_typeof(this.inputData) === 'object') {
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+
+                try {
+                    for (var _iterator3 = Object.keys(this.inputData)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                        var data = _step3.value;
+
+                        domData = this.domObject.parent().parent().find(this.inputData[data]).text();
+                        $(data).val(domData);
+                    }
+                } catch (err) {
+                    _didIteratorError3 = true;
+                    _iteratorError3 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                            _iterator3.return();
+                        }
+                    } finally {
+                        if (_didIteratorError3) {
+                            throw _iteratorError3;
+                        }
+                    }
                 }
             }
             return this;
         },
-        init: function() {
-            this.processHeader().processInputData().processFormAction()
+        init: function init() {
+            this.processHeader().processInputData().processFormAction();
         }
     };
     return moduleName;
-}());
-(function(){
-  const SidebarView = function () {
-	this.sidebar =$('#js-qg-sidebar');
-	this.remove_icon =$('#js-qg-sidebar--remove-icon');
-	this.burger = $('#js-qg-burger');
-	this.link = $('#js-qg-sidebar--link>a');
-	this.toogleClass = 'qg-sidebar--unhide';
-	this.link_toogleClass = 'qg-sidebar--sublink--unhide';
-	// body...
-  };
-  const SidebarController = function() {
-	this.view = new SidebarView;
-	this.toogleClass = this.view.toogleClass;
-	this.link_toogleClass = this.view.link_toogleClass;
-	this.sidebar = this.view.sidebar;
-  };
-  SidebarController.prototype.init = function() {
-	let toogleClass = this.toogleClass;
-	let link_toogleClass = this.link_toogleClass;
-	let sidebar = this.sidebar;
-	this.view.remove_icon.click(function (e) {
-		e.preventDefault();
-		classToggle.remove( toogleClass , sidebar);
-	});
-	this.view.burger.click(function(e){
-		e.preventDefault();
-		classToggle.add( toogleClass , sidebar);
-	});
-	this.view.link.click(function(e){
-		//e.preventDefault();
-		var target = $(this).attr('href');
-		target = $(target);
-		classToggle.toggle( link_toogleClass , target);
-	});
-  };
-  let sidebar = new SidebarController;
-  sidebar.init();
-  console.log('happy');
+}();
+
+(function () {
+    var SidebarView = function SidebarView() {
+        this.sidebar = $('#js-qg-sidebar');
+        this.remove_icon = $('#js-qg-sidebar--remove-icon');
+        this.burger = $('#js-qg-burger');
+        this.link = $('#js-qg-sidebar--link>a');
+        this.toogleClass = 'qg-sidebar--unhide';
+        this.link_toogleClass = 'qg-sidebar--sublink--unhide';
+        // body...
+    };
+    var SidebarController = function SidebarController() {
+        this.view = new SidebarView();
+        this.toogleClass = this.view.toogleClass;
+        this.link_toogleClass = this.view.link_toogleClass;
+        this.sidebar = this.view.sidebar;
+    };
+    SidebarController.prototype.init = function () {
+        var toogleClass = this.toogleClass;
+        var link_toogleClass = this.link_toogleClass;
+        var sidebar = this.sidebar;
+        this.view.remove_icon.click(function (e) {
+            e.preventDefault();
+            classToggle.remove(toogleClass, sidebar);
+        });
+        this.view.burger.click(function (e) {
+            e.preventDefault();
+            classToggle.add(toogleClass, sidebar);
+        });
+        this.view.link.click(function (e) {
+            //e.preventDefault();
+            var target = $(this).attr('href');
+            target = $(target);
+            classToggle.toggle(link_toogleClass, target);
+        });
+    };
+    var sidebar = new SidebarController();
+    sidebar.init();
+    console.log('happy');
 })();
-(function() {
+(function () {
     /*Course View*/
-    const CourseView = function() {
-            this.createCourseForm = $('#createCourse'); //DOM object for create Course form
-            this.createCourseBtn = $('#createCourseBtn'); //DOM object for create Course submit button
-            this.searchCourseForm = $('#searchCourse'); //DOM object for search Course form 
-            this.searchCourseBtn = $('#searchCourseBtn'); //DOM object for search Course submit button
-            this.searchCourseInput = $('#searchCourseInput'); //DOM object for search Course input
-            this.searchCourseResult = $('#searchResult'); //DOM object for search Course result
-            this.reloadSearchCourse = $('#reloadCourseBtn'); //DOM object for reloading search Course result
-            this.searchNextCourse = $('#courseNextSearch'); //DOM object for search Course pagination button (Next)
-            this.searchPrevCourse = $('#coursePrevSearch'); //DOM object for search Course pagination button (Previous)
-            this.searchCourseError = $('#searchCourseError') //DOM object for displaying serach error
-            this.createSuccessAlert = $('#courseSuccessAlert'); //DOM object for success alert
-            this.createErrorAlert = $('#courseErrorAlert'); //DOM object for error alert
-            this.updateCourseForm = $('#updateCourse'); //DOM object for update Course form
-            this.updateCourseBtn = $('#updateCourseBtn'); //DOM object for update Course submit button
-            this.updateSuccessAlert = $('#courseUpdateSuccessAlert'); //DOM object for update success alert
-            this.updateErrorAlert = $('#courseUpdateErrorAlert'); //DOM object for update error alert
-            this.courseModalAnchor = $('.courseModalAnchor'); //DOM object for Course anchor button for modal popup
-            this.components = {
-                success: { //Data for successful Ajax request
-                    data: "",
-                    template: function() {
-                        return `<div class="alert alert-success">
-							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-							<strong>Success!!!</strong> <p>${this.data} </p>
-						</div>`
-                    }
+    var CourseView = function CourseView() {
+        this.createCourseForm = $('#createCourse'); //DOM object for create Course form
+        this.createCourseBtn = $('#createCourseBtn'); //DOM object for create Course submit button
+        this.searchCourseForm = $('#searchCourse'); //DOM object for search Course form 
+        this.searchCourseBtn = $('#searchCourseBtn'); //DOM object for search Course submit button
+        this.searchCourseInput = $('#searchCourseInput'); //DOM object for search Course input
+        this.searchCourseResult = $('#searchResult'); //DOM object for search Course result
+        this.reloadSearchCourse = $('#reloadCourseBtn'); //DOM object for reloading search Course result
+        this.searchNextCourse = $('#courseNextSearch'); //DOM object for search Course pagination button (Next)
+        this.searchPrevCourse = $('#coursePrevSearch'); //DOM object for search Course pagination button (Previous)
+        this.searchCourseError = $('#searchCourseError'); //DOM object for displaying serach error
+        this.createSuccessAlert = $('#courseSuccessAlert'); //DOM object for success alert
+        this.createErrorAlert = $('#courseErrorAlert'); //DOM object for error alert
+        this.updateCourseForm = $('#updateCourse'); //DOM object for update Course form
+        this.updateCourseBtn = $('#updateCourseBtn'); //DOM object for update Course submit button
+        this.updateSuccessAlert = $('#courseUpdateSuccessAlert'); //DOM object for update success alert
+        this.updateErrorAlert = $('#courseUpdateErrorAlert'); //DOM object for update error alert
+        this.courseModalAnchor = $('.courseModalAnchor'); //DOM object for Course anchor button for modal popup
+        this.components = {
+            success: { //Data for successful Ajax request
+                data: "",
+                template: function template() {
+                    return '<div class="alert alert-success">\n\t\t\t\t\t\t\t<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>\n\t\t\t\t\t\t\t<strong>Success!!!</strong> <p>' + this.data + ' </p>\n\t\t\t\t\t\t</div>';
+                }
+            },
+            error: { //Data for failed Ajax request
+                data: {
+                    message: "",
+                    errors: ""
                 },
-                error: { //Data for failed Ajax request
-                    data: {
-                        message: "",
-                        errors: ""
-                    },
-                    template: function() {
-                        return `<div class="alert alert-danger">
-							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-							<strong>Error!!</strong> <p>${this.data.message} </p>${this.data.errors}
-						</div>`
-                    }
+                template: function template() {
+                    return '<div class="alert alert-danger">\n\t\t\t\t\t\t\t<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>\n\t\t\t\t\t\t\t<strong>Error!!</strong> <p>' + this.data.message + ' </p>' + this.data.errors + '\n\t\t\t\t\t\t</div>';
                 }
             }
-            this.searchComponents = {
-                success: {
-                    data: "", //Received data from Ajax request
-                    template: function() {
-                        var html = '';
-                        for (var datum of this.data) { //loop through the recieved data's object
-                            html += `<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
-										<div class="qg-col--xs--8 qg-animate--card-content">
-											<div class="font-primary courseName" data-url="${appData.hostname}/courses/${datum.id}" style="padding: 10px">${datum.name}</div>
-											<div class="font-secondary" style="padding: 10px">
-												<span class="qg-data-tags--black">${datum.departments.name} Faculty</span>
-												<span class="courseCode qg-data-tags--transparent">${datum.course_code}</span>
-												<p class="courseDescription" style='color:grey'>${datum.description}</p>
-											</div>
-										</div>
-										<div class="qg-col--xs--2 qg-flex">
-											<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--10 qg-anchor--green f-align-center courseModalAnchor" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-										</div>
-									</div>`
+        };
+        this.searchComponents = {
+            success: {
+                data: "", //Received data from Ajax request
+                template: function template() {
+                    var html = '';
+                    var _iteratorNormalCompletion4 = true;
+                    var _didIteratorError4 = false;
+                    var _iteratorError4 = undefined;
+
+                    try {
+                        for (var _iterator4 = this.data[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                            var datum = _step4.value;
+                            //loop through the recieved data's object
+                            html += '<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">\n\t\t\t\t\t\t\t\t\t\t<div class="qg-col--xs--8 qg-animate--card-content">\n\t\t\t\t\t\t\t\t\t\t\t<div class="font-primary courseName" data-url="' + appData.hostname + '/courses/' + datum.id + '" style="padding: 10px">' + datum.name + '</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class="font-secondary" style="padding: 10px">\n\t\t\t\t\t\t\t\t\t\t\t\t<span class="badge badge-primary" style=\'font-size:13px\'>' + datum.departments.name + ' Faculty</span>\n\t\t\t\t\t\t\t\t\t\t\t\t<span class="badge badge-success" style=\'font-size:13px\'>' + datum.course_code + '</span>\n\t\t\t\t\t\t\t\t\t\t\t\t<p class="courseDescription" style=\'color:grey\'>' + datum.description + '</p>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class="qg-col--xs--2 qg-flex">\n\t\t\t\t\t\t\t\t\t\t\t<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--10 qg-anchor--green f-align-center courseModalAnchor" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>';
                         }
-                        return html;
+                    } catch (err) {
+                        _didIteratorError4 = true;
+                        _iteratorError4 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                _iterator4.return();
+                            }
+                        } finally {
+                            if (_didIteratorError4) {
+                                throw _iteratorError4;
+                            }
+                        }
                     }
-                },
-                error: {
-                    template: `<div class="alert alert-danger">
-							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-							<strong>Error!!</strong> <p>Internal Server Error, Please check your network connection</p>
-						</div>`
+
+                    return html;
                 }
+            },
+            error: {
+                template: '<div class="alert alert-danger">\n\t\t\t\t\t\t\t<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>\n\t\t\t\t\t\t\t<strong>Error!!</strong> <p>Internal Server Error, Please check your network connection</p>\n\t\t\t\t\t\t</div>'
             }
-        }
-        /*Course Model*/
-    const CourseModel = function() {
+        };
+    };
+    /*Course Model*/
+    var CourseModel = function CourseModel() {
         this.view = new CourseView();
         /*Create Course Form*/
         this.createCourseForm = new FormSubmit(); //new create Course instance  of form submission object 
         this.updateCourseForm = new FormSubmit(); //new create Course instance of form submission object
         this.searchAllCourse = new ItemSearch(); //new search Course instance of Item search object object
-    }
+    };
     CourseModel.prototype = {
         //Model method for creating Course
-        CreateCourse: function() {
+        CreateCourse: function CreateCourse() {
             var obj = this;
             obj.view.createSuccessAlert.empty(); //Remove success alert elements
             obj.view.createErrorAlert.empty(); //Remove error alert elements
             this.createCourseForm.formObject = this.view.createCourseForm;
             //Method before Ajax request 
-            this.createCourseForm.beforeAjaxReq = function() {
+            this.createCourseForm.beforeAjaxReq = function () {
                 obj.view.createCourseBtn.prop('disabled', true);
             };
             //Method after successful Ajax request 
-            this.createCourseForm.successfullAjaxReq = function(response, jqXHR) {
+            this.createCourseForm.successfullAjaxReq = function (response, jqXHR) {
                 obj.view.createCourseBtn.prop('disabled', false);
                 obj.view.components.success.data = "Course successfully created";
                 obj.view.createSuccessAlert.append(obj.view.components.success.template()); //Append success message from server to id 'CourseSuccessAlert' in view
-                obj.refreshSearchCourse() //Reload search request to update the displayed Courses 
+                obj.refreshSearchCourse(); //Reload search request to update the displayed Courses 
                 obj.view.createCourseForm[0].reset(); //Reset submit form
                 console.log('success' + ' ' + jqXHR + ' ' + response);
             };
             //Method after failed Ajax request
-            this.createCourseForm.failedAjaxReq = function(jqXHR, textStatus, error) {
+            this.createCourseForm.failedAjaxReq = function (jqXHR, textStatus, error) {
                 var responseErrors;
                 obj.view.createCourseBtn.prop('disabled', false); //Enable submit button for create Course form
                 obj.view.components.error.data.message = error;
@@ -371,17 +482,38 @@ var ModalDataTransfer = (function() {
                 }
                 //Request status code for "Unknown Response"
                 else if (jqXHR.status == 422) {
-                    responseErrors = JSON.parse(jqXHR.responseText);
-                    for (var responseError of Object.keys(responseErrors.errors)) {
-                        for (var i = responseErrors.errors[responseError].length - 1; i >= 0; i--) {
-                            obj.view.components.error.data.errors += "<br> - " + responseErrors.errors[responseError][i];
+                        responseErrors = JSON.parse(jqXHR.responseText);
+                        var _iteratorNormalCompletion5 = true;
+                        var _didIteratorError5 = false;
+                        var _iteratorError5 = undefined;
+
+                        try {
+                            for (var _iterator5 = Object.keys(responseErrors.errors)[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                                var responseError = _step5.value;
+
+                                for (var i = responseErrors.errors[responseError].length - 1; i >= 0; i--) {
+                                    obj.view.components.error.data.errors += "<br> - " + responseErrors.errors[responseError][i];
+                                }
+                            }
+                        } catch (err) {
+                            _didIteratorError5 = true;
+                            _iteratorError5 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                    _iterator5.return();
+                                }
+                            } finally {
+                                if (_didIteratorError5) {
+                                    throw _iteratorError5;
+                                }
+                            }
                         }
                     }
-                }
-                //Request status code for "Internal server error"
-                else {
-                    obj.view.components.error.data.errors = "<br> Internal server error. Please reload page";
-                }
+                    //Request status code for "Internal server error"
+                    else {
+                            obj.view.components.error.data.errors = "<br> Internal server error. Please reload page";
+                        }
                 obj.view.createErrorAlert.append(obj.view.components.error.template());
                 console.log('fail' + ' ' + error + ' ' + jqXHR.responseText + ' ' + textStatus);
             };
@@ -389,18 +521,18 @@ var ModalDataTransfer = (function() {
             console.log(this.view.createCourseForm.attr('action'));
         },
         //Model method for updating Course
-        UpdateCourse: function() {
+        UpdateCourse: function UpdateCourse() {
             var obj = this;
             obj.view.updateSuccessAlert.empty(); //Remove update success alert elements
             obj.view.updateErrorAlert.empty(); //Remove update error alert elements
             this.updateCourseForm.formObject = this.view.updateCourseForm;
             console.log(this.updateCourseForm.formObject.attr('method') + ' ' + this.updateCourseForm.formObject.attr('action'));
             //Method before Ajax request 
-            this.updateCourseForm.beforeAjaxReq = function() {
+            this.updateCourseForm.beforeAjaxReq = function () {
                 obj.view.updateCourseBtn.prop('disabled', true); //Disable update button
             };
             //Method after successful Ajax request 
-            this.updateCourseForm.successfullAjaxReq = function(response, jqXHR) {
+            this.updateCourseForm.successfullAjaxReq = function (response, jqXHR) {
                 obj.view.updateCourseBtn.prop('disabled', false); //Enable Course Button
                 obj.view.components.success.data = "Course successfully updated";
                 obj.view.updateSuccessAlert.append(obj.view.components.success.template()); //Append success message from server to id 'CourseSuccessAlert' in view
@@ -409,7 +541,7 @@ var ModalDataTransfer = (function() {
                 console.log('success' + ' ' + jqXHR + ' ' + response);
             };
             //Method after failed Ajax request
-            this.updateCourseForm.failedAjaxReq = function(jqXHR, textStatus, error) {
+            this.updateCourseForm.failedAjaxReq = function (jqXHR, textStatus, error) {
                 var responseErrors;
                 obj.view.updateCourseBtn.prop('disabled', false); //Enable submit button for create Course form
                 obj.view.components.error.data.message = error; //Transfer response error to error template
@@ -419,17 +551,38 @@ var ModalDataTransfer = (function() {
                 }
                 //Request status code for "Unknown Response"
                 else if (jqXHR.status == 422) {
-                    responseErrors = JSON.parse(jqXHR.responseText);
-                    for (var responseError of Object.keys(responseErrors.errors)) {
-                        for (var i = responseErrors.errors[responseError].length - 1; i >= 0; i--) {
-                            obj.view.components.error.data.errors += "<br> - " + responseErrors.errors[responseError][i];
+                        responseErrors = JSON.parse(jqXHR.responseText);
+                        var _iteratorNormalCompletion6 = true;
+                        var _didIteratorError6 = false;
+                        var _iteratorError6 = undefined;
+
+                        try {
+                            for (var _iterator6 = Object.keys(responseErrors.errors)[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                                var responseError = _step6.value;
+
+                                for (var i = responseErrors.errors[responseError].length - 1; i >= 0; i--) {
+                                    obj.view.components.error.data.errors += "<br> - " + responseErrors.errors[responseError][i];
+                                }
+                            }
+                        } catch (err) {
+                            _didIteratorError6 = true;
+                            _iteratorError6 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                                    _iterator6.return();
+                                }
+                            } finally {
+                                if (_didIteratorError6) {
+                                    throw _iteratorError6;
+                                }
+                            }
                         }
                     }
-                }
-                //Request status code for "Internal server error"
-                else {
-                    obj.view.components.error.data.errors = "<br> Internal server error. Please reload page";
-                }
+                    //Request status code for "Internal server error"
+                    else {
+                            obj.view.components.error.data.errors = "<br> Internal server error. Please reload page";
+                        }
                 obj.view.updateErrorAlert.append(obj.view.components.error.template());
                 console.log('fail' + ' ' + error + ' ' + jqXHR.responseText + ' ' + textStatus);
             };
@@ -437,19 +590,22 @@ var ModalDataTransfer = (function() {
             console.log(this.view.updateCourseForm.attr('action'));
         },
         //Model for search Course Ajax states
-        searchCourse: function() {
+        searchCourse: function searchCourse() {
             this.searchAllCourse.searchObject = this.view.searchCourseForm; //Input element for Course search
             var obj = this; // Assigning the Course Model instance to 'obj' variable
             obj.view.searchCourseError.empty(); //Remove search error alert
-            this.searchAllCourse.beforeAjaxReq = function() { //Action to be performed before Ajax request
+            this.searchAllCourse.beforeAjaxReq = function () {
+                //Action to be performed before Ajax request
                 obj.view.searchCourseBtn.prop('disabled', true); //Disable search button
             };
-            this.searchAllCourse.successfullAjaxReq = function(response) { //Action to be performed after successfull Ajax request
+            this.searchAllCourse.successfullAjaxReq = function (response) {
+                //Action to be performed after successfull Ajax request
                 obj.view.searchCourseResult.empty(); //Removing all child elements of 'serachResult' id after Ajax request
                 obj.view.searchCourseBtn.prop('disabled', false); //Enable search button
-                if (response == '') { //if the search result is empty
+                if (response == '') {
+                    //if the search result is empty
                     obj.view.searchNextCourse.prop('disabled', true); //Disable Next Search Button
-                    obj.view.searchCourseResult.append(`<div class="qg-col--xs--10" style="padding:10px; text-align:center"><b>No result returned !!</b></div>`);
+                    obj.view.searchCourseResult.append('<div class="qg-col--xs--10" style="padding:10px; text-align:center"><b>No result returned !!</b></div>');
                 } else {
                     obj.view.searchNextCourse.prop('disabled', false); //Enable Next Search Button
                     obj.view.searchComponents.success.data = response; // Assign recieved data to search component
@@ -457,7 +613,8 @@ var ModalDataTransfer = (function() {
                     console.log(response);
                 }
             };
-            this.searchAllCourse.failedAjaxReq = function() { //Action to be performed after failed ajax Request 
+            this.searchAllCourse.failedAjaxReq = function () {
+                //Action to be performed after failed ajax Request 
                 obj.view.searchCourseBtn.prop('disabled', false); //Enable search button
                 obj.view.searchCourseError.empty(); //Remove search error alert
                 obj.view.searchCourseError.append(obj.view.searchComponents.error.template); //Display error alert on failed serach
@@ -465,27 +622,27 @@ var ModalDataTransfer = (function() {
             };
         },
         //Model for next pagination button
-        nextSearchPaginate: function() {
+        nextSearchPaginate: function nextSearchPaginate() {
             this.searchCourse(); //load all Ajax asychronous states
             this.searchAllCourse.nextPaginate(); //increase pagination and Perform Ajax request
         },
         //Model for previous pagination button
-        prevSearchPaginate: function() {
+        prevSearchPaginate: function prevSearchPaginate() {
             this.searchCourse(); //load all Ajax asychronous states
             this.searchAllCourse.prevPaginate(); //Decrease pagination and Perform Ajax request 
         },
         //Model for new search request
-        refreshSearchCourse: function() {
+        refreshSearchCourse: function refreshSearchCourse() {
             this.searchCourse(); //load all Ajax asychronous states
             this.searchAllCourse.searchReq(); //Refresh pagination to zero and Perform Ajax request 
         },
         //Model for new search request (without pagination refresh)
-        reloadSearchCourse: function() {
+        reloadSearchCourse: function reloadSearchCourse() {
             this.searchCourse(); //load all Ajax asychronous states
             this.searchAllCourse.ajaxReq(); //Perform Ajax request without refreshing pagination  
         },
         //Model for transfer Course data to the modal
-        transferCourseData: function(domObject) {
+        transferCourseData: function transferCourseData(domObject) {
             /* body... */
             console.log(domObject);
             ModalDataTransfer.domObject = domObject;
@@ -504,89 +661,89 @@ var ModalDataTransfer = (function() {
         }
     };
     /*Course Controller*/
-    const CourseController = function() {
+    var CourseController = function CourseController() {
         this.view = new CourseView();
         this.model = new CourseModel();
-    }
+    };
     CourseController.prototype = {
         //Controller for creating new Course
-        createCourse: function() {
+        createCourse: function createCourse() {
             var obj = this;
-            this.view.createCourseBtn.click(function(e) {
+            this.view.createCourseBtn.click(function (e) {
                 e.preventDefault();
                 obj.model.CreateCourse();
-            })
+            });
             return obj;
         },
         //Controller for updating Course
-        updateCourse: function() {
+        updateCourse: function updateCourse() {
             var obj = this;
-            this.view.updateCourseBtn.click(function(e) {
+            this.view.updateCourseBtn.click(function (e) {
                 e.preventDefault();
                 obj.model.UpdateCourse();
-            })
+            });
             return obj;
         },
         //Controller for loading created Courses to view
-        loadCourse: function() {
-            this.model.refreshSearchCourse()
+        loadCourse: function loadCourse() {
+            this.model.refreshSearchCourse();
             return this;
         },
         //Controller for searching for created Courses
-        searchCourse: function() {
+        searchCourse: function searchCourse() {
             var obj = this;
-            this.view.searchCourseInput.keyup(function(e) {
+            this.view.searchCourseInput.keyup(function (e) {
                 e.preventDefault();
-                obj.model.refreshSearchCourse()
+                obj.model.refreshSearchCourse();
             });
-            this.view.searchCourseBtn.click(function(e) {
+            this.view.searchCourseBtn.click(function (e) {
                 e.preventDefault();
-                obj.model.refreshSearchCourse()
-            })
+                obj.model.refreshSearchCourse();
+            });
             return obj;
         },
         //Controller for refreshing search for created Courses
-        refreshSearch: function() {
+        refreshSearch: function refreshSearch() {
             var obj = this;
-            this.view.reloadSearchCourse.click(function(e) {
+            this.view.reloadSearchCourse.click(function (e) {
                 e.preventDefault();
                 obj.view.searchCourseForm[0].reset();
-                obj.model.refreshSearchCourse()
-            })
+                obj.model.refreshSearchCourse();
+            });
             return obj;
         },
         //Controller to paginate search (next)
-        nextSearchPaginate: function() {
+        nextSearchPaginate: function nextSearchPaginate() {
             var obj = this;
-            this.view.searchNextCourse.click(function(e) {
+            this.view.searchNextCourse.click(function (e) {
                 e.preventDefault();
                 obj.model.nextSearchPaginate();
             });
             return obj;
         },
         //Controller to paginate search (previous)
-        prevSearchPaginate: function() {
+        prevSearchPaginate: function prevSearchPaginate() {
             var obj = this;
-            this.view.searchPrevCourse.click(function(e) {
+            this.view.searchPrevCourse.click(function (e) {
                 e.preventDefault();
                 obj.model.prevSearchPaginate();
             });
             return obj;
         },
         //Controller to tranfer data from downloaded Courses to modal  
-        transferCourseData: function() {
+        transferCourseData: function transferCourseData() {
             var obj = this;
-            this.view.searchCourseResult.on('click', '.courseModalAnchor', function(e) {
+            this.view.searchCourseResult.on('click', '.courseModalAnchor', function (e) {
                 e.preventDefault();
                 var obj1 = $(this);
                 console.log(obj1);
                 obj.model.transferCourseData(obj1);
-            })
+            });
         },
-        init: function() {
+        init: function init() {
             this.createCourse().updateCourse().loadCourse().searchCourse().refreshSearch().nextSearchPaginate().prevSearchPaginate().transferCourseData();
         }
-    }
+    };
     new CourseController().init();
 })();
 console.log('righthere');

@@ -16,7 +16,7 @@ class User extends Authenticatable
      */
     public $table = 'users';
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname','surname','email', 'password','avatar','department_id','faculty_id','course_id','role'
     ];
 
     /**
@@ -27,4 +27,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function departments()
+    {
+        return $this->belongsTo('QuestGen\Departments','department_id');
+    }
+    public function faculty()
+    {
+        return $this->belongsTo('QuestGen\Faculty','faculty_id');
+    }
+    public function courses()
+    {
+        return $this->belongsTo('QuestGen\Courses','course_id');
+    }
 }

@@ -51,8 +51,8 @@
 										<div class="qg-col--xs--8 qg-animate--card-content">
 											<div class="font-primary courseName" data-url="${appData.hostname}/courses/${datum.id}" style="padding: 10px">${datum.name}</div>
 											<div class="font-secondary" style="padding: 10px">
-												<span class="qg-data-tags--black">${datum.departments.name} Faculty</span>
-												<span class="courseCode qg-data-tags--transparent">${datum.course_code}</span>
+												<span class="badge badge-primary" style='font-size:13px'>${datum.departments.name} Faculty</span>
+												<span class="badge badge-success" style='font-size:13px'>${datum.course_code}</span>
 												<p class="courseDescription" style='color:grey'>${datum.description}</p>
 											</div>
 										</div>

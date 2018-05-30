@@ -176,6 +176,46 @@ const ItemSearch = (function() {
     }
 });
 
+/*
+**@decsription : Module for button ajax request
+*/
+const ButtonRequest = (function() {
+    var ajaxObj;
+    var obj;
+    return {
+        action:"",
+        method:"",
+        data:"",
+        ajaxParam: function() {
+            obj = this;
+            return {
+                method: obj.method,
+                url: obj.action,
+                data: obj.data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                },
+                beforeSend: function() {
+                    obj.beforeAjaxReq()
+                },
+                success: function(response) {
+                    obj.successfullAjaxReq(response)
+                },
+                error: function(jqXHR, textStatus, error) {
+                    obj.failedAjaxReq(jqXHR, textStatus, error)
+                }
+            }
+        },
+        beforeAjaxReq: "",
+        successfullAjaxReq: "",
+        failedAjaxReq: "",
+        ajaxReq: function() {
+            obj = this;
+            $.ajax(obj.ajaxParam());
+        }
+    }
+});
+
 var ModalDataTransfer = (function() {
     'use strict';
     var domData;
@@ -219,3 +259,4 @@ var ModalDataTransfer = (function() {
     };
     return moduleName;
 }());
+

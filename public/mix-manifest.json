@@ -1,7 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
     "/js/department.js": "/js/department.js",
     "/js/faculty.js": "/js/faculty.js",
     "/js/course.js": "/js/course.js",
+    "/js/manage_admin.js": "/js/manage_admin.js",
+    "/js/restore_deactive_admins.js": "/js/restore_deactive_admins.js",
     "/css/app2.css": "/css/app2.css"
 }

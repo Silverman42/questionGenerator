@@ -17,4 +17,8 @@ class Departments extends Model
     {
     	return $this->hasMany('QuestGen\Courses','department_id');
     }
+    public function User()
+    {
+        return $this->hasMany('QuestGen\User','department_id');
+    }
 }

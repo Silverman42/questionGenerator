@@ -89,7 +89,6 @@
 					</div>
 				</div>
 				<div class="qg-col--xs--3 qg-flex">
-					<a href="#" class="qg-block qg-col--xs--5 qg-anchor--red f-align-center" title="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
 				</div>
 			</div>
@@ -103,7 +102,6 @@
 					</div>
 				</div>
 				<div class="qg-col--xs--3 qg-flex">
-					<a href="#" class="qg-block qg-col--xs--5 qg-anchor--red f-align-center" title="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
 				</div>
 			</div>
@@ -117,7 +115,6 @@
 					</div>
 				</div>
 				<div class="qg-col--xs--3 qg-flex">
-					<a href="#" class="qg-block qg-col--xs--5 qg-anchor--red f-align-center" title="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
 				</div>
 			</div>

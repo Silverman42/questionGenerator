@@ -46,9 +46,9 @@ class CourseController extends Controller
     {
         //validate Inputs
         $validator = $request->validate([
-         'name'=>'required|unique:courses|string|max:100',
-         'course_code'=>'required|string|max:10',
-         'description'=>'nullable|string|max:100',
+         'name'=>'required|unique:courses|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
+         'course_code'=>'required|string|max:10|regex:/(^[A-Za-z0-9 ]+$)+/',
+         'description'=>'nullable|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
          'department_id'=>'integer'
         ]);
         Courses::create($request->all());
@@ -65,9 +65,9 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $validator = $request->validate([
-         'name'=>'required|unique:courses,name,'.$id.'|string|max:100',
-         'course_code'=>'required|unique:courses,course_code,'.$id.'|string|max:10',
-         'description'=>'nullable|string|max:100',
+         'name'=>'required|unique:courses,name,'.$id.'|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
+         'course_code'=>'required|unique:courses,course_code,'.$id.'|string|max:10|regex:/(^[A-Za-z0-9 ]+$)+/',
+         'description'=>'nullable|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
          'department_id'=>'integer|required'
         ]);
         $course = Courses::where('id',$id)->update([
@@ -89,5 +89,14 @@ class CourseController extends Controller
     public function destroy(Departments $departments)
     {
         //
+    }
+    /**
+     * fetches all courses from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function fetch()
+    {
+        
     }
 }

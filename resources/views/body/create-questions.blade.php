@@ -253,48 +253,39 @@
 			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
 				<div class="qg-col--xs--7 qg-animate--card-content">
 					<div class="font-primary" style="padding: 10px">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua
-						?
+						What is the conjugate base of H2PO4-?
 					</div>
 					<div class="font-secondary" style="padding: 10px">
 						Chemistry ( CHEM 220 ) / <span class="f-green">Theory</span> / 100 level
 					</div>
 				</div>
 				<div class="qg-col--xs--3 qg-flex">
-					<a href="#" class="qg-block qg-col--xs--5 qg-anchor--red f-align-center" title="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
 				</div>
 			</div>
 			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
 				<div class="qg-col--xs--7 qg-animate--card-content">
 					<div class="font-primary" style="padding: 10px">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua
-						?
+						How does ATP supply energy for cellular activities?
 					</div>
 					<div class="font-secondary" style="padding: 10px">
 						Physics ( PHY 220 ) / <span class="f-green">Theory</span> / 100 level
 					</div>
 				</div>
 				<div class="qg-col--xs--3 qg-flex">
-					<a href="#" class="qg-block qg-col--xs--5 qg-anchor--red f-align-center" title="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
 				</div>
 			</div>
 			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
 				<div class="qg-col--xs--7 qg-animate--card-content">
 					<div class="font-primary" style="padding: 10px">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua
-						?
+						What is subsistent farming ?
 					</div>
 					<div class="font-secondary" style="padding: 10px">
 						Agriculture ( AGIC 220 ) / <span class="f-green">MC</span> / 100 level
 					</div>
 				</div>
 				<div class="qg-col--xs--3 qg-flex">
-					<a href="#" class="qg-block qg-col--xs--5 qg-anchor--red f-align-center" title="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
 				</div>
 			</div>
@@ -305,7 +296,8 @@
 			
 		</div>
 	</div>
-	@endsection
-	@section('script')
-	<script type="text/javascript"></script>
-	@endsection
+</div>
+@endsection
+@section('script')
+<script src="{{ asset('js/course.js') }}"></script>
+@endsection

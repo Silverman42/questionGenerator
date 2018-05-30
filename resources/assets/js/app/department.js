@@ -52,7 +52,7 @@
 										<div class="qg-col--xs--8 qg-animate--card-content">
 											<div class="font-primary deptName" data-url="${appData.hostname}/departments/${datum.id}" style="padding: 10px">${datum.name}</div>
 											<div class="font-secondary" style="padding: 10px">
-												<span class="qg-data-tags--black">${datum.faculty.name} Faculty</span>
+												<span class="badge badge-primary" style='font-size:13px'>${datum.faculty.name} Faculty</span>
 												<p class="deptDescription" style='color:grey'>${datum.description}</p>
 											</div>
 										</div>

@@ -40,7 +40,7 @@
 		<!-- jQuery -->
 		<script src="{{ asset('js/app.js') }}"></script>
 		<!-- customJs -->
-		<script src="{{ asset('js/app2.js') }}"></script>
+		<script src="{{ asset('js/index.js') }}"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	</body>
 </html>

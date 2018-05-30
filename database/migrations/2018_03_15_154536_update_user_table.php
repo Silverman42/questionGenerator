@@ -16,13 +16,11 @@ class UpdateUserTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->string('role')->default('admin');
-            $table->string('course')->nullable();
             $table->string('avatar')->default('avatar.png');
-            $table->string('department')->nullable();
-            $table->string('faculty')->nullable();
             $table->integer('department_id',false)->nullable()->unsigned();
             $table->integer('course_id',false)->nullable()->unsigned();
             $table->integer('faculty_id',false)->nullable()->unsigned();
+            $table->boolean('active')->default(true);
             $table->softDeletes();
         });
         Schema::table('users', function (Blueprint $table) {
@@ -46,7 +44,7 @@ class UpdateUserTable extends Migration
             $table->dropForeign('users_faculty_id_foreign');
         });
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role','course','avatar','department','department_id','course_id','faculty_id');
+            $table->dropColumn('role','avatar','active','department_id','course_id','faculty_id');
         });
     }
 }

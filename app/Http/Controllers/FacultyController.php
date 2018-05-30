@@ -25,8 +25,8 @@ class FacultyController extends Controller
     {
         //validate Inputs
         $validator = $request->validate([
-         'name'=>'required|unique:faculty|string|max:100',
-         'description'=>'nullable|string|max:200',
+         'name'=>'required|unique:faculty|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
+         'description'=>'nullable|string|max:200|regex:/(^[A-Za-z0-9 ]+$)+/',
         ]);
         Faculty::create($request->all());
         $this->createSuccess = 'Faculty successfully created';
@@ -43,8 +43,8 @@ class FacultyController extends Controller
     public function update(Request $request, $id)
     {
         $validator = $request->validate([
-         'name'=>'required|unique:faculty,name,'.$id.'|string|max:100',
-         'description'=>'nullable|string|max:100'
+         'name'=>'required|unique:faculty,name,'.$id.'|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/',
+         'description'=>'nullable|string|max:100|regex:/(^[A-Za-z0-9 ]+$)+/'
         ]);
         $department = Faculty::where('id',$id)->update([
             'name'=>$request->name,
@@ -81,5 +81,15 @@ class FacultyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * fetches all faculties from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function fetch()
+    {
+        
     }
 }

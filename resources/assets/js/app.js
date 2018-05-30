@@ -18,5 +18,24 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data:{
+    	adminRoles : { admin : [false,false,false],
+    				   dean : [true,false,false],
+    				   hod : [true,true,false],
+    				   lecturer : [true,true,true]
+    				 },
+    	selectorEntries : [false,false,false],
+        selectorEntriesUpdate: [false,false,false]
+    },
+    methods:{
+    	toggleAdminLevel: function (event,selectorEntries) {
+    		/* body... */
+    		var count = 0;
+            for (entry of selectorEntries) {
+                Vue.set(selectorEntries, count, this.adminRoles[event.target.value][count]);  
+                count++;
+            }
+    	}
+    }
 });
