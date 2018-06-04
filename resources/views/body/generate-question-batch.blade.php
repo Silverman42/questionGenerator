@@ -9,25 +9,33 @@
 		<!--Create New Department-->
 		<div class="qg-card" style="background: white;">
 			<h5 class="font-primary f-green" style="padding:10px"> <span> + &nbsp;</span> Generate Questions</h5>
-			<div class="qg-card--content font-secondary" style="padding:10px; border-color: lightgray">
+			<div class="qg-card--content font-secondary" style="padding:10px; border-color: #f3f3f3">
 				<form action="" method="POST" role="form" class="font-secondary f-black">
 					<div class="form-group" style="font-size: 13px">
+						<label for="input">Faculty</label>
+						<div id="selectFacultyAlert"></div>
+						<select name="faculty_id" id="QuestionFaculty" data-state="1" class="form-control qg-input" required="required">
+							<option value=""></option>
+						</select>
+					</div>
+					<div class="form-group" style="font-size: 13px">
 						<label for="input">Department</label>
-						<select name="department_id" id="input" class="form-control qg-input" required="required">
+						<div id="selectDepartmentAlert"></div>
+						<select name="department_id" id="QuestionDepartment" data-state="0" class="form-control qg-input" required="required">
 							<option value=""></option>
 						</select>
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Course</label>
-						<select name="course_id" id="input" class="form-control qg-input" required="required">
+						<div id="selectCourseAlert"></div>
+						<select name="course_id" id="QuestionCourse" data-state="0" class="form-control qg-input" required="required">
 							<option value=""></option>
 						</select>
 					</div>
 					<div class="form-group" style="font-size: 13px">
-						<label for="input">Difficulty</label>
-						<select name="difficulty" id="input" class="form-control qg-input" required="required">
-							<option value=""></option>
-						</select>
+						<label for="input">Question count</label>
+						<p style="color:lightgrey">Max. number of question count is 200</p>
+						<input type="number" name="question_count" class="form-control qg-input" required="" max="2099">
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Departmental Level</label>
@@ -42,6 +50,7 @@
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Academic Session</label>
+						<p style="color:lightgrey">Max. academic session is 2099</p>
 						<div class="form-group">
 							<input type="number" name="" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" max="2199" min="1988" placeholder="e.g 2018" title="">
 						</div>
@@ -79,20 +88,20 @@
 					</div>
 				</form>
 			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
+			<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
 				<div class="qg-col--xs--7 qg-animate--card-content">
 					<div class="font-primary" style="padding: 10px">
 						Chemistry ( CHEM 220 )
 					</div>
 					<div class="font-secondary" style="padding: 10px">
-						Chemistry Department / <span class="f-green">Theory</span> / 100 level / 2017 session
+						Physical Science/ Chemistry / <span class="f-green">Theory</span> / 100 level / 2017 session
 					</div>
 				</div>
 				<div class="qg-col--xs--3 qg-flex">
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
 				</div>
 			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
+			<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
 				<div class="qg-col--xs--7 qg-animate--card-content">
 					<div class="font-primary" style="padding: 10px">
 						Physics ( PHY 220 )
@@ -105,7 +114,7 @@
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
 				</div>
 			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
+			<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
 				<div class="qg-col--xs--7 qg-animate--card-content">
 					<div class="font-primary" style="padding: 10px">
 						Geology ( GEO 220 )
@@ -118,7 +127,7 @@
 					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
 				</div>
 			</div>
-			<div class="qg-card--content qg-flex font-secondary" style="border-color: lightgray">
+			<div class="qg-card--content qg-flex font-secondary" style="border-color: #f3f3f3">
 				<div class="qg-col--xs--5" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto" ><< Previous</button></div>
 				<div class="qg-col--xs--5" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto">Next >></button></div>
 			</div>
@@ -128,5 +137,5 @@
 </div>
 @endsection
 @section('script')
-<script type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('js/generate_question_batch.js') }}"></script>
 @endsection

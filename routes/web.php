@@ -27,6 +27,7 @@ Route::resource('/faculty', 'FacultyController')->only(['index','update','store'
 Route::get('fetch/faculty', 'FetchController@faculty');
 Route::get('fetch/department', 'FetchController@department');
 Route::get('fetch/course', 'FetchController@course');
+
 //Batch Question generation routes
 Route::resource('/generate-question-batch', 'GenerateQuestionBatchController');
 

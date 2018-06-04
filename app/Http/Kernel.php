@@ -58,5 +58,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \QuestGen\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'admin' => \QuestGen\Http\Middleware\AllowOnlyAdmin::class,
+        'admin.dean' => \QuestGen\Http\Middleware\AllowAdminDean::class,
+        'admin.dean.hod'=> \QuestGen\Http\Middleware\AllowAdminDeanHod::class
     ];
 }

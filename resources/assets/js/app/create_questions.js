@@ -165,13 +165,6 @@
         this.view = new QuestionView();
         /*Create Question Form*/
         this.formObject = new FormSubmit(); //new create Question instance  of form submission object
-        /*
-        this.updateQuestionData = new FormSubmit(); //new create Question instance of form submission object
-        this.updateQuestionAvatar = new FormSubmit(); //new create Question instance of form submission object
-        this.updateQuestionRole = new FormSubmit(); //new create Question instance of form submission object
-        this.updateQuestionPass = new FormSubmit();
-        this.updateQuestionStat = new FormSubmit();
-        */
         this.searchAllQuestion = new ItemSearch(); //new search Question instance of Item search object object
         this.levelSelector = new ButtonRequest(); //new instance of  ButttonRequest object
         this.loadOptions = new ButtonRequest(); //new instance of  ButttonRequest object
