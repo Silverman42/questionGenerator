@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','admin']);
     }
     public function index()
     {
@@ -130,7 +130,7 @@ class AdminController extends Controller
 			$avatar = str_replace('storage', 'public', $user->avatar);
 			Storage::delete($avatar);
 		}
-		$avatar_name = request()->avatar->store('public/avatar');
+		$avatar_name = request()->hasFile('avatar') ? request()->avatar->store('public/avatar') : "/storage/avatar/myAvatar.png";
 		$user->avatar = str_replace('public', '/storage', $avatar_name);
 		$user->save();
 		$success = 'Admin Data successfully updated'; 

@@ -273,7 +273,7 @@ var ModalDataTransfer = (function() {
 	this.sidebar =$('#js-qg-sidebar');
 	this.remove_icon =$('#js-qg-sidebar--remove-icon');
 	this.burger = $('#js-qg-burger');
-	this.link = $('#js-qg-sidebar--link>a');
+	this.link = $('.js-qg-sublink');
 	this.toogleClass = 'qg-sidebar--unhide';
 	this.link_toogleClass = 'qg-sidebar--sublink--unhide';
 	// body...
@@ -297,7 +297,7 @@ var ModalDataTransfer = (function() {
 		classToggle.add( toogleClass , sidebar);
 	});
 	this.view.link.click(function(e){
-		//e.preventDefault();
+		e.preventDefault();
 		var target = $(this).attr('href');
 		target = $(target);
 		classToggle.toggle( link_toogleClass , target);

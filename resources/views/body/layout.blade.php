@@ -27,19 +27,19 @@
 				</div>
 				<div class="modal-body f-align-center font-primary">
 					<p style="padding: 10px">
-						<span class="font-secondary">Name - </span>{{ Auth::user()->firstname.' '.Auth::user()->surname }} 
+						<span class="font-secondary">Name - </span>{{ Auth::user()->firstname.' '.Auth::user()->surname }}
 					</p>
 					<p style="padding: 10px">
-						<span class="font-secondary">Role - </span>{{ Auth::user()->role }} 
+						<span class="font-secondary">Role - </span>{{ Auth::user()->role }}
 					</p>
 					<p style="padding: 10px">
-						<span class="font-secondary">Faculty - </span>{{ Auth::user()->faculty_id == null ? "None" : Auth::user()->faculty->name }} 
+						<span class="font-secondary">Faculty - </span>{{ Auth::user()->faculty_id == null ? "None" : Auth::user()->faculty->name }}
 					</p>
 					<p style="padding: 10px">
-						<span class="font-secondary">Department - </span>{{ Auth::user()->department_id == null ? 'None' : Auth::user()->departments->name }} 
+						<span class="font-secondary">Department - </span>{{ Auth::user()->department_id == null ? 'None' : Auth::user()->departments->name }}
 					</p>
 					<p style="padding: 10px">
-						<span class="font-secondary">Course - </span>{{ Auth::user()->course_id == null ? 'None' : Auth::user()->courses->name }} 
+						<span class="font-secondary">Course - </span>{{ Auth::user()->course_id == null ? 'None' : Auth::user()->courses->name }}
 					</p>
 				</div>
 				<div class="modal-footer font-primary">
@@ -62,19 +62,27 @@
 				</div>
 				<div style="font-size: 13px" class="qg-sidebar--link font-primary" id="js-qg-sidebar--link">
 					<a class="{{ URL::current() == url('/dashboard') ? 'active' : '' }}" href="{{ url('/dashboard') }}"> Dashboard</a>
+					@if (Auth::user()->role == 'admin')
 					<a class="{{ URL::current() == url('/faculty') ? 'active' : '' }}" href="{{ url('/faculty') }}"> Faculty</a>
+					@endif
+					@if (in_array(Auth::user()->role, ['admin','dean']))
 					<a class="{{ URL::current() == url('/departments') ? 'active' : '' }}" href="{{ url('/departments') }}"> Department</a>
+					@endif
+					@if (in_array(Auth::user()->role, ['admin','dean','hod']))
 					<a class="{{ URL::current() == url('/courses') ? 'active' : '' }}" href="{{ url('courses') }}"> Courses</a>
+					@endif
 					<a href="#qg-question-sublink" class="js-qg-sublink {{ URL::current() == url('/question') || URL::current() == url('/generate-question-batch') ? 'active' : '' }}"> Questions</a>
 					<div class="qg-sidebar--sublink" style="padding-left: 20px" id="qg-question-sublink">
 						<a class="{{ URL::current() == url('/question') ? 'active' : '' }}" href="{{ url('/question') }}">Create Questions</a>
 						<a class="{{ URL::current() == url('/generate-question-batch') ? 'active' : '' }}" href="{{ url('generate-question-batch') }}">Generate Question Batch</a>
 					</div>
+					@if (Auth::user()->role == 'admin')
 					<a href="#qg-admin-sublink" class="js-qg-sublink {{ URL::current() == url('/admin/manage') || URL::current() == url('/admin/restore-deactivated') ? 'active' : '' }}"> Admin</a>
 					<div class="qg-sidebar--sublink" style="padding-left: 20px" id="qg-admin-sublink">
 						<a class="{{ URL::current() == url('/admin/manage') ? 'active' : '' }}" href="{{ url('admin/manage') }}">Manage Admin</a>
 						<a class="{{ URL::current() == url('/admin/restore-deactivated') ? 'active' : '' }}" href="{{ url('admin/restore-deactivated') }}">Restore Deactivated Admins</a>
 					</div>
+					@endif
 				</div>
 			</nav>
 			<div class="qg-subcontainer" id="js-qg-subcontainer">

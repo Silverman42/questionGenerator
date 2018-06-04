@@ -1,318 +1,9 @@
-var appData = (function() {
-  'use strict';
-
-  var appData = {
-    hostname: window.location.origin,
-  };
-
-  return appData;
-}());
-// body...
-var tabSwitch = (function(argument) {
-    var defaultTabButton = '',
-        tabButtonArray = [],
-        tabArray = [],
-        classTabRemove,
-        obj;
-    return {
-        triggerTabSwitch: function() {
-            for (var i = tabArray.length - 1; i >= 0; i--) {
-                console.log('love');
-                tabArray[i].addClass(classTabRemove);
-            }
-            if (window.location.hash == "") {
-                defaultTab.removeClass(classTabRemove);
-            } else {
-                $(window.location.hash).removeClass(classTabRemove);
-            }
-        },
-        clickEvent: function(defaultTabs, tabKeys = [], tabs = [], classRemove) {
-            // body...
-            obj = this
-            defaultTab = defaultTabs;
-            tabButtonArray = tabKeys;
-            classTabRemove = classRemove;
-            tabArray = tabs;
-            console.log(tabButtonArray[1]);
-            obj.triggerTabSwitch();
-            for (var i = tabButtonArray.length - 1; i >= 0; i--) {
-                tabButtonArray[i].click(function(e) {
-                    // body...
-                    e.preventDefault();
-                    window.location.hash = $(this).attr('href');
-                    console.log('fly');
-                    obj.triggerTabSwitch();
-                });
-            }
-        }
-    }
-    // body...
-})();
-
-//Toggle html element Class
-var classToggle = (function() {
-    return {
-        remove: function(toggleClass, target) {
-            target.removeClass(toggleClass);
-        },
-        add: function(toggleClass, target) {
-            target.addClass(toggleClass);
-        },
-        toggle: function(toggleClass, target) {
-            target.toggleClass(toggleClass);
-        }
-    }
-})();
-
-//Ajax Form submition module
-const FormSubmit = (function() {
-    var ajaxObj;
-    var obj;
-    var tempFormData;
-    var tempFormObject;
-    return {
-        formObject: "",
-        formData: function() {
-            tempFormObject = this.formObject;
-            tempFormData = new FormData(tempFormObject[0]);
-            return tempFormData;
-        },
-        contentType:function () {
-          /* body... */
-          if(this.formObject.attr('method') === 'PUT'){
-            return 'application/json';
-          }
-          else{
-            return false;
-          }
-        },
-        ajaxParam: function() {
-            obj = this;
-            return {
-                method: obj.formObject.attr('method'),
-                url: obj.formObject.attr('action'),
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-                },
-                data: obj.formData(),
-                enctype: 'multipart/form-data',
-                processData: false, // tell jQuery not to process the data
-                contentType: obj.contentType(),
-                beforeSend: function() {
-                    obj.beforeAjaxReq()
-                },
-                success: function(response, status, jqXHR) {
-                    obj.successfullAjaxReq(response, jqXHR)
-                },
-                error: function(jqXHR, textStatus, error) {
-                    obj.failedAjaxReq(jqXHR, textStatus, error)
-                }
-            }
-        },
-        beforeAjaxReq: "",
-        successfullAjaxReq: "",
-        failedAjaxReq: "",
-        ajaxReq: function() {
-            obj = this;
-            $.ajax(obj.ajaxParam());
-        }
-    }
-});
-//Ajax Item search module
-const ItemSearch = (function() {
-    var ajaxObj;
-    var obj;
-    var tempSearchData;
-    var tempSearchObject;
-    return {
-        searchObject: "",
-        paginateNum: 0,
-        formData: function() {
-            tempSearchObject = this.searchObject;
-            tempFormData = tempSearchObject.serialize();
-            return tempFormData + "&paginate=" + this.paginateNum;
-        },
-        ajaxParam: function() {
-            obj = this;
-            return {
-                method: 'GET',
-                url: obj.searchObject.attr('action'),
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-                },
-                data: obj.formData(),
-                beforeSend: function() {
-                    obj.beforeAjaxReq()
-                },
-                success: function(response) {
-                    obj.successfullAjaxReq(response)
-                },
-                error: function(jqXHR, textStatus, error) {
-                    obj.failedAjaxReq(jqXHR, textStatus, error)
-                }
-            }
-        },
-        beforeAjaxReq: "",
-        successfullAjaxReq: "",
-        failedAjaxReq: "",
-        ajaxReq: function() {
-            obj = this;
-            $.ajax(obj.ajaxParam());
-        },
-        nextPaginate: function() {
-            this.paginateNum++;
-            this.ajaxReq();
-        },
-        prevPaginate: function() {
-            if (this.paginateNum > 0) {
-                this.paginateNum--;
-                this.ajaxReq();
-            }
-        },
-        searchReq: function() {
-            this.paginateNum = 0;
-            this.ajaxReq();
-        }
-    }
-});
-
-/*
-**@decsription : Module for button ajax request
-*/
-const ButtonRequest = (function() {
-    var ajaxObj;
-    var obj;
-    return {
-        action:"",
-        method:"",
-        data:"",
-        ajaxParam: function() {
-            obj = this;
-            return {
-                method: obj.method,
-                url: obj.action,
-                data: obj.data,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-                },
-                beforeSend: function() {
-                    obj.beforeAjaxReq()
-                },
-                success: function(response) {
-                    obj.successfullAjaxReq(response)
-                },
-                error: function(jqXHR, textStatus, error) {
-                    obj.failedAjaxReq(jqXHR, textStatus, error)
-                }
-            }
-        },
-        beforeAjaxReq: "",
-        successfullAjaxReq: "",
-        failedAjaxReq: "",
-        ajaxReq: function() {
-            obj = this;
-            $.ajax(obj.ajaxParam());
-        }
-    }
-});
-
-var ModalDataTransfer = (function() {
-    'use strict';
-    var domData;
-    var moduleName = {
-        domObject: '',
-        headerData: '',
-        formActionData: '',
-        inputData: '',
-        fetchData: '',
-        processHeader: function() {
-            /* Process header data */
-            if (typeof this.headerData === 'object') {
-                for (var data of Object.keys(this.headerData)) {
-                    domData = this.domObject.parent().parent().find(this.headerData[data]).text();
-                    $(data).text(domData);
-                }
-            }
-            return this;
-        },
-        processFormAction: function() {
-            if (typeof this.formActionData === 'object') {
-                for (var data of Object.keys(this.formActionData)) {
-                    domData = this.domObject.parent().parent().find(this.formActionData[data]).data('url');
-                    $(data).attr('action', domData);
-                    console.log($(data).attr('action'));
-                }
-            }
-            return this;
-        },
-        processInputData: function() {
-            if (typeof this.inputData === 'object') {
-                for (var data of Object.keys(this.inputData)) {
-                    domData = this.domObject.parent().parent().find(this.inputData[data]).text();
-                    $(data).val(domData);
-                }
-            }
-            return this;
-        },
-        processFetchedData: function() {
-            if (this.fetchData !== '') {
-                this.fetchData();
-            }
-            return this;
-        },
-        init: function() {
-            this.processHeader().processInputData().processFormAction().processFetchedData()
-        }
-    };
-    return moduleName;
-}());
-
-
-(function(){
-  const SidebarView = function () {
-	this.sidebar =$('#js-qg-sidebar');
-	this.remove_icon =$('#js-qg-sidebar--remove-icon');
-	this.burger = $('#js-qg-burger');
-	this.link = $('.js-qg-sublink');
-	this.toogleClass = 'qg-sidebar--unhide';
-	this.link_toogleClass = 'qg-sidebar--sublink--unhide';
-	// body...
-  };
-  const SidebarController = function() {
-	this.view = new SidebarView;
-	this.toogleClass = this.view.toogleClass;
-	this.link_toogleClass = this.view.link_toogleClass;
-	this.sidebar = this.view.sidebar;
-  };
-  SidebarController.prototype.init = function() {
-	let toogleClass = this.toogleClass;
-	let link_toogleClass = this.link_toogleClass;
-	let sidebar = this.sidebar;
-	this.view.remove_icon.click(function (e) {
-		e.preventDefault();
-		classToggle.remove( toogleClass , sidebar);
-	});
-	this.view.burger.click(function(e){
-		e.preventDefault();
-		classToggle.add( toogleClass , sidebar);
-	});
-	this.view.link.click(function(e){
-		e.preventDefault();
-		var target = $(this).attr('href');
-		target = $(target);
-		classToggle.toggle( link_toogleClass , target);
-	});
-  };
-  let sidebar = new SidebarController;
-  sidebar.init();
-  console.log('happy');
-})();
 (function() {
     /*Question View*/
     const QuestionView = function() {
-            //Create Question
-            this.createQuestionForm = $('#createQuestion'); //DOM object for create Question form
-            this.createQuestionBtn = $('#createQuestionBtn'); //DOM object for create Question submit button
+            //Create Question Batch
+            this.createQuestionForm = $('#createQuestionBatch'); //DOM object for create Question Batch form
+            this.createQuestionBtn = $('#createQuestionBatchBtn'); //DOM object for create Question Batch submit button
             this.createSuccessAlert = $('#questionCreateSuccessAlert'); //DOM object for success alert
             this.createErrorAlert = $('#questionCreateErrorAlert'); //DOM object for error alert
 
@@ -324,14 +15,6 @@ var ModalDataTransfer = (function() {
             this.selectDepartmentAlert = $('#selectDepartmentAlert');
             this.selectCourseAlert = $('#selectCourseAlert') ;
 
-            //Question class structure selectors (for update questions)
-            this.questionFacultyUpdate = $('#QuestionFacultyUpdate')
-            this.questionDepartmentUpdate = $('#QuestionDepartmentUpdate')
-            this.questionCourseUpdate = $('#QuestionCourseUpdate')
-            this.updateFacultyAlert = $('#updateFacultyAlert')
-            this.updateDepartmentAlert = $('#updateDepartmentAlert')
-            this.updateCourseAlert = $('#updateCourseAlert')
-
             //Search Question
             this.searchQuestionForm = $('#searchQuestion'); //DOM object for search Question form
             this.searchQuestionBtn = $('#searchQuestionBtn'); //DOM object for search Question submit button
@@ -341,33 +24,6 @@ var ModalDataTransfer = (function() {
             this.searchNextQuestion = $('#QuestionNextSearch'); //DOM object for search Question pagination button (Next)
             this.searchPrevQuestion = $('#QuestionPrevSearch'); //DOM object for search Question pagination button (Previous)
             this.searchQuestionError = $('#searchQuestionError') //DOM object for displaying serach error
-
-            //Update Question data
-            this.updateQuestionDataForm = $('#updateQuestion'); //DOM object for update Question form
-            this.updateQuestionDataBtn = $('#updateQuestionBtn'); //DOM object for update Question submit button
-            this.updateSuccessAlert = $('#questionUpdateSuccessAlert'); //DOM object for update success alert
-            this.updateErrorAlert = $('#questionUpdateErrorAlert'); //DOM object for update error alert
-
-            //Update Question type
-            this.updateQuestionType= $('#updateQuestionType'); //DOM object for update Question type form
-            this.updateQuestionTypeBtn = $('#updateQuestionTypeBtn'); //DOM object for update Question type submit button
-            this.upQuestTypeSuccessAlert = $('#questionTypeUpdateSuccessAlert'); //DOM object for update success alert
-            this.upQuestTypeErrorAlert = $('#questionTypeUpdateErrorAlert'); //DOM object for update error alert
-
-            //Update Question Class structure
-            this.upQuestionClassForm = $('#updateQuestionClassStruct'); //DOM object for update Question class structure form
-            this.upQuestionClassBtn = $('#updateQuestionClassStructBtn'); //DOM object for update Question class structure submit button
-            this.upQuestClassSuccessAlert = $('#upQuestClassSuccessAlert'); //DOM object for update success alert
-            this.upQuestClassErrorAlert = $('#upQuestClassErrorAlert'); //DOM object for update error alert
-
-            //Update Question illustration
-            this.updateQuestIllustForm = $('#updateQuestionIllust'); //DOM object for update Question illustration form
-            this.updateQuestIllustBtn = $('#updateQuestionIllustBtn'); //DOM object for update Question illustration submit button
-            this.upQuestIllustSuccessAlert = $('#upQuestIllustSuccessAlert'); //DOM object for update success alert
-            this.upQuestIllustErrorAlert = $('#upQuestIllustErrorAlert'); //DOM object for update error alert
-
-            //Options
-            this.optionObj = $('#createdOptions'); //DOM object for update error alert
 
             this.QuestionModalAnchor = $('.QuestionModalAnchor'); //DOM object for Question anchor button for modal popup
             this.components = {
@@ -438,36 +94,6 @@ var ModalDataTransfer = (function() {
 </div>`
                 }
             }
-            this.optionComponent = {
-                success: {
-                    data: "", //Received data from Ajax request
-                    template: function() {
-                        var html = '';
-                        if(this.data.length > 0){
-                            for (var datum of this.data) { //loop through the recieved data's object
-                            html += `<div class="qg-flex">
-                                <div class="qg-col--xs--9" style="padding: 0px 4px">
-                                    <input type="text" value="${datum.option}" name="options[]" class="form-control qg-input new-option-input" value=""  placeholder="option" title="">
-                                </div>
-                                <div class="qg-col--xs--2">
-                                    <a href="" class="btn qg-btn btn-red--dark removeOption">
-                                      <span class="glyphicon glyphicon-remove"></span>
-                                    </a>
-                                </div>
-                            </div>`
-                            }
-                            return html;
-                        }
-                        return 'No option found';
-                    }
-                },
-                error: {
-                    template: `<div class="alert alert-danger">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <strong>Error!!</strong> <p>Internal Server Error, Please try again</p>
-</div>`
-                }
-            }
         }
         /*Question Model*/
     const QuestionModel = function() {
@@ -476,7 +102,6 @@ var ModalDataTransfer = (function() {
         this.formObject = new FormSubmit(); //new create Question instance  of form submission object
         this.searchAllQuestion = new ItemSearch(); //new search Question instance of Item search object object
         this.levelSelector = new ButtonRequest(); //new instance of  ButttonRequest object
-        this.loadOptions = new ButtonRequest(); //new instance of  ButttonRequest object
     }
     QuestionModel.prototype = {
         //Model method button ajax request
@@ -615,65 +240,14 @@ var ModalDataTransfer = (function() {
         CreateQuestion: function () {
             /* Model to create new question */
             var obj = this
-            this.view.components.success.data = "Question successfully created"
+            this.view.components.success.data = "Question paper successfully created"
             this.submitModule.errorAlert = this.view.createErrorAlert;
             this.submitModule.successAlert = this.view.createSuccessAlert;
             this.submitModule.formModule = this.formObject;
             this.submitModule.formElement = this.view.createQuestionForm;
             this.submitModule.submitButton = this.view.createQuestionBtn;
             this.submitModule.component = this.view.components;
-            this.submitModule.refreshSearch = function () { obj.refreshSearchQuestion() };
-            this.submitModule.init();
-        },
-        UpdateQuestionData:function () {
-            /* body... */
-            var obj = this
-            this.view.components.success.data = "Question data successfully updated"
-            this.submitModule.errorAlert = this.view.updateErrorAlert;
-            this.submitModule.successAlert = this.view.updateSuccessAlert;
-            this.submitModule.formModule = this.formObject;
-            this.submitModule.formElement = this.view.updateQuestionDataForm;
-            this.submitModule.submitButton = this.view.updateQuestionDataBtn;
-            this.submitModule.component = this.view.components;
-            this.submitModule.refreshSearch = function () { obj.reloadSearchQuestion() } 
-            this.submitModule.init();
-        },
-        UpdateQuestionClass:function () {
-            var obj = this
-            this.view.components.success.data = "Question avatar successfully updated"
-            this.submitModule.errorAlert = this.view.upQuestClassErrorAlert;
-            this.submitModule.successAlert = this.view.upQuestClassSuccessAlert;
-            this.submitModule.formModule = this.formObject;
-            this.submitModule.formElement = this.view.upQuestionClassForm;
-            this.submitModule.submitButton = this.view.upQuestionClassBtn;
-            this.submitModule.component = this.view.components;
-            this.submitModule.refreshSearch = function () { obj.reloadSearchQuestion() } 
-            this.submitModule.init();
-        },
-        UpdateQuestionIllust:function () {
-            //Update Question illustration
-            var obj = this
-            this.view.components.success.data = "Question Illustration successfully updated"
-            this.submitModule.errorAlert = this.view.upQuestIllustErrorAlert;
-            this.submitModule.successAlert = this.view.upQuestIllustSuccessAlert;
-            this.submitModule.formModule = this.formObject;
-            this.submitModule.formElement = this.view.updateQuestIllustForm;
-            this.submitModule.submitButton = this.view.updateQuestIllustBtn;
-            this.submitModule.component = this.view.components;
-            this.submitModule.refreshSearch = function () { obj.reloadSearchQuestion() } 
-            this.submitModule.init();
-        },
-        UpdateQuestionType:function () {
-            //Update Question type
-            var obj = this
-            this.view.components.success.data = "Question type successfully changed"
-            this.submitModule.errorAlert = this.view.upQuestTypeErrorAlert;
-            this.submitModule.successAlert = this.view.upQuestTypeSuccessAlert;
-            this.submitModule.formModule = this.formObject;
-            this.submitModule.formElement = this.view.updateQuestionType;
-            this.submitModule.submitButton = this.view.updateQuestionTypeBtn;
-            this.submitModule.component = this.view.components;
-            this.submitModule.refreshSearch = function () { obj.reloadSearchQuestion() } 
+            this.submitModule.refreshSearch = function () {  }; //obj.refreshSearchQuestion()
             this.submitModule.init();
         },
         //Model for search Question Ajax states
@@ -767,10 +341,6 @@ var ModalDataTransfer = (function() {
                 obj.LoadOptions(obj);
             }
             ModalDataTransfer.init(); //perform the transfer
-        },
-        //Model for removing parent elment question options parent element
-        removeParentElement:function (obj) {
-            return obj.parent().parent().remove();
         }
     };
     /*Question Controller*/
@@ -803,30 +373,6 @@ var ModalDataTransfer = (function() {
             })
             return obj;
         },
-        //Controller for fetching faculty to update Question
-        QuestionFacUpdateSelect: function() {
-            var obj = this;
-            obj.view.questionFacultyUpdate.click(function(e) {
-                obj.model.QuestionFacUpdateSelect();
-            })
-            return obj;
-        },
-        //Controller for fetching department to update Question
-        QuestionDeptUpdateSelect: function() {
-            var obj = this;
-            obj.view.questionDepartmentUpdate.click(function(e) {
-                obj.model.QuestionDeptUpdateSelect();
-            })
-            return obj;
-        },
-        //Controller for fetching course to update Question
-        QuestionCourseUpdateSelect: function() {
-            var obj = this;
-            obj.view.questionCourseUpdate.click(function(e) {
-                obj.model.QuestionCourseUpdateSelect();
-            })
-            return obj;
-        },
         //Controller for creating new Question
         createQuestion: function() {
             var obj = this;
@@ -836,43 +382,6 @@ var ModalDataTransfer = (function() {
             })
             return obj;
         },
-        //Controller for updating Question data
-        updateQuestion: function() {
-            var obj = this;
-            this.view.updateQuestionDataBtn.click(function(e) {
-                e.preventDefault();
-                obj.model.UpdateQuestionData();
-            })
-            return obj;
-        },
-        //Controller for updating Question class
-        updateQuestionClass: function() {
-            var obj = this;
-            this.view.upQuestionClassBtn.click(function(e) {
-                e.preventDefault();
-                obj.model.UpdateQuestionClass();
-            })
-            return obj;
-        },
-        //Controller for updating Question illustration
-        updateQuestionIllust: function() {
-            var obj = this;
-            this.view.updateQuestIllustBtn.click(function(e) {
-                e.preventDefault();
-                obj.model.UpdateQuestionIllust();
-            })
-            return obj;
-        },
-        //Controller for updating Question type
-        updateQuestionType: function() {
-            var obj = this; 
-            this.view.updateQuestionTypeBtn.click(function(e) {
-                e.preventDefault();
-                obj.model.UpdateQuestionType();
-            })
-            return obj;
-        },
-
         //Controller for loading created Questions to view
         loadQuestion: function() {
             this.model.refreshSearchQuestion()
@@ -929,24 +438,12 @@ var ModalDataTransfer = (function() {
             })
             return obj;
         },
-        //Controller for removing parent elment question options parent element
-        removeParentElement:function () {
-            var obj = this
-            this.view.optionObj.on('click','.removeOption',function (e) {
-                e.preventDefault();
-                var obj1 = $(this);
-                obj.model.removeParentElement(obj1);
-            });
-            return this
-        },
         init: function() {
             this.QuestionFacSelect()
                 .QuestionDeptSelect()
                 .QuestionCourseSelect()
-                .QuestionFacUpdateSelect()
-                .QuestionDeptUpdateSelect()
-                .QuestionCourseUpdateSelect()
                 .createQuestion()
+                /*
                 .loadQuestion()
                 .searchQuestion()
                 .refreshSearch()
@@ -958,6 +455,7 @@ var ModalDataTransfer = (function() {
                 .updateQuestionIllust()
                 .updateQuestionType()
                 .removeParentElement();
+                */
         }
     }
     new QuestionController().init();
