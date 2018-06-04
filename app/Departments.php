@@ -21,4 +21,9 @@ class Departments extends Model
     {
         return $this->hasMany('QuestGen\User','department_id');
     }
+    public function Questions()
+    {
+        return $this->hasMany('QuestGen\Questions', 'department_id');
+    }
+
 }

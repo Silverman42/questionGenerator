@@ -3,7 +3,8 @@
 namespace QuestGen\Http\Controllers\Auth;
 
 use QuestGen\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -18,22 +19,33 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
     /**
-     * Where to redirect users after login.
+     * Authenticate an Admin login
      *
-     * @var string
+     * @param Request $request
+     * @return Response 
      */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function login(Request $request)
     {
-        $this->middleware('guest')->except('logout');
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'active'=> 1])){
+            $success = 'Login successfull';
+            if($request->ajax()){
+                return response()->json($success, 200);
+            }
+            return redirect()->route('dashboard');
+        }
+        $error = 'Login Failed. Your credentials do not match database records';
+        return response()->json($error, 404);
+    }
+    /**
+     * Log out Admin
+     *
+     *
+     * @return Redirect 
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('index');
     }
 }

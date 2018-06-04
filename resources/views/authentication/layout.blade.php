@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="csrf_token" content="{{ csrf_token() }}">
 		<title>Title Page</title>
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -19,7 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/app2.css') }}">
 	</head>
 	<body class="qg-landing-background">
-		<div class="container-fluid">
+		<div class="container-fluid" id="app">
 			<div class="qg-flex" >
 				<div class="qg-landing qg-col--lg--5">
 					<div class="qg-landing-left" style="padding-top:90px;">
@@ -40,7 +41,7 @@
 		<!-- jQuery -->
 		<script src="{{ asset('js/app.js') }}"></script>
 		<!-- customJs -->
-		<script src="{{ asset('js/index.js') }}"></script>
+		<script src="{{ asset('js/login.js') }}"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	</body>
 </html>

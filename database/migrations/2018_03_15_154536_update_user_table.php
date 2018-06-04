@@ -16,7 +16,7 @@ class UpdateUserTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->string('role')->default('admin');
-            $table->string('avatar')->default('avatar.png');
+            $table->string('avatar')->default('/storage/avatar/myAvatar.png');
             $table->integer('department_id',false)->nullable()->unsigned();
             $table->integer('course_id',false)->nullable()->unsigned();
             $table->integer('faculty_id',false)->nullable()->unsigned();

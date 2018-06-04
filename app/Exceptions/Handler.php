@@ -4,6 +4,7 @@ namespace QuestGen\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -49,5 +50,25 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Render an unthenticated user to login page.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Exception  $exception
+     * @return \Illuminate\Http\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if($request->ajax())
+        {
+            return response([
+                "message" => "Unauthenticated.",
+                "data" => ['User is not authenticated, please log in'],
+            ],401);
+        }
+
+        return redirect()->to('/');
     }
 }

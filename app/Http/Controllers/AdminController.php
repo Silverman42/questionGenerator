@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
     	return view('body.manage-admin');
@@ -32,7 +36,7 @@ class AdminController extends Controller
     		'course_id'=>'integer|filled',
     		'avatar'=>'image|mimes:jpeg,png|max:100'
     	]);
-    	$avatar_url = request()->hasFile('avatar') ? request()->avatar->store('public/avatar') : "/storage/avatar/myAvatar.png"  ;
+    	$avatar_url = request()->hasFile('avatar') ? request()->avatar->store('public/avatar') : "/storage/avatar/myAvatar.png";
     	$avatar_url = str_replace('public', '/storage', $avatar_url);
     	User::create([
     		'firstname'=>request()->firstname,

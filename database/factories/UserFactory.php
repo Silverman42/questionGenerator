@@ -21,7 +21,6 @@ $factory->define(QuestGen\User::class, function (Faker $faker) {
         'password' => bcrypt('secret'),
         'remember_token' => str_random(10),
         'role'=>'admin',
-        'avatar'=>'avatar.png'
     ];
 });
 $factory->define(QuestGen\Faculty::class, function (Faker $faker) {

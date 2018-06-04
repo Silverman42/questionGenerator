@@ -230,6 +230,7 @@ var ModalDataTransfer = function () {
         headerData: '',
         formActionData: '',
         inputData: '',
+        fetchData: '',
         processHeader: function processHeader() {
             /* Process header data */
             if (_typeof(this.headerData) === 'object') {
@@ -322,8 +323,14 @@ var ModalDataTransfer = function () {
             }
             return this;
         },
+        processFetchedData: function processFetchedData() {
+            if (this.fetchData !== '') {
+                this.fetchData();
+            }
+            return this;
+        },
         init: function init() {
-            this.processHeader().processInputData().processFormAction();
+            this.processHeader().processInputData().processFormAction().processFetchedData();
         }
     };
     return moduleName;
