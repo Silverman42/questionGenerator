@@ -16,4 +16,8 @@ class Courses extends Model
     {
     	return $this->hasMany('QuestGen\User','course_id');
     }
+    public function Questions()
+    {
+        return $this->hasMany('QuestGen\Questions', 'department_id');
+    }
 }

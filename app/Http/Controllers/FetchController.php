@@ -8,7 +8,11 @@ use QuestGen\Departments as Department;
 use QuestGen\Courses as Course;
 
 class FetchController extends Controller
-{
+{   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /*
 	* @description: Controller to fetch data
     */

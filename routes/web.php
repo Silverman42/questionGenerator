@@ -29,8 +29,15 @@ Route::get('fetch/department', 'FetchController@department');
 Route::get('fetch/course', 'FetchController@course');
 //Batch Question generation routes
 Route::resource('/generate-question-batch', 'GenerateQuestionBatchController');
+
 // Question generation routes
-Route::resource('/create-question', 'CreateQuestionController');
+Route::get('/question/search', 'CreateQuestionController@search')->name('question.search');
+Route::get('/option/fetch/{id}', 'CreateQuestionController@fetch_option');
+Route::put('question/update/class/{id}','CreateQuestionController@update_question_class');
+Route::put('question/update/illustration/{id}','CreateQuestionController@update_question_illust');
+Route::put('question/update/type/{id}','CreateQuestionController@update_question_type');
+Route::resource('/question', 'CreateQuestionController')->only(['index','update','store','destroy']);
+
 //Admin routes
 Route::group(['prefix' => 'admin'], function() {
     Route::get('manage','AdminController@index');
@@ -46,9 +53,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::put('activate/{id}', 'AdminController@activate')->name('admin.activate');
 });
 
-Auth::routes();
 //Home
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Authentication
+Route::post('/login', 'Auth\LoginController@login')->middleware('guest')->name('login');
+Route::get('/logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout');
 Route::get('/test/page',function()
 {
 	return view('test');

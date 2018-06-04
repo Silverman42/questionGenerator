@@ -8,35 +8,23 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header font-primary">
-				<h4 class="modal-title">Edit Subjects</h4>
+				<h4 class="modal-title">Edit Created Question</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<form action="" method="POST" role="form" class="font-secondary f-black">
+				<form action="" id="updateQuestion" method="POST" role="form" class="font-secondary f-black">
+					<input type="" name="_method" value="put" hidden="">
 					<div class="form-group">
-						<input type="text" name="" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" placeholder="Question" title="">
+						<label for="question">Question</label>
+						<textarea  name="question" id="modal-question" class="form-control qg-input" value="" required="required"></textarea>
 					</div>
 					<div class="form-group" style="font-size: 13px">
-						<label for="input">Department</label>
-						<select name="department_id" id="input" class="form-control qg-input" required="required">
-							<option value=""></option>
-						</select>
-					</div>
-					<div class="form-group" style="font-size: 13px">
-						<label for="input">Course</label>
-						<select name="course_id" id="input" class="form-control qg-input" required="required">
-							<option value=""></option>
-						</select>
-					</div>
-					<div class="form-group" style="font-size: 13px">
-						<label for="input">Difficulty</label>
-						<select name="difficulty" id="input" class="form-control qg-input" required="required">
-							<option value=""></option>
-						</select>
+						<label for="input">Academic Session</label>
+						<input type="number" name="academic_session" id="modal-academic-session" class="form-control qg-input" value="" required="required" max="2099" min="1988" title="">
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Departmental Level</label>
-						<select name="departmental_level" id="input" class="form-control qg-input" required="required">
+						<select name="department_level" id="input" class="form-control qg-input" required="required">
 							<option value="100">100</option>
 							<option value="200">200</option>
 							<option value="300">300</option>
@@ -45,74 +33,78 @@
 							<option value="600">600</option>
 						</select>
 					</div>
+					<div class="form-group font-primary">
+						<button type="submit" id="updateQuestionBtn" class="btn btn-green--dark qg-btn">Submit</button>
+					</div>
+					<div class="form-group font-primary" id="questionUpdateSuccessAlert">
+						<!--Success alert-->
+					</div>
+					<div class="form-group font-primary" id="questionUpdateErrorAlert">
+						<!--Error alert-->
+					</div>
+				</form><hr>
+				<!--Update Question Type-->
+				<form action="" id="updateQuestionType" method="POST" role="form" class="font-secondary f-black">
+					<input name="_method" value="put" hidden="">
+					<question-type></question-type>
+					<p class="font-secondary" style="padding:5px">Preset Options</p>
+					<div id="createdOptions"></div>
+					<div class="form-group font-primary">
+						<button type="submit" id="updateQuestionTypeBtn" class="btn btn-green--dark qg-btn">Submit</button>
+					</div>
+					<div class="form-group font-primary" id="questionTypeUpdateSuccessAlert">
+						<!--Success alert-->
+					</div>
+					<div class="form-group font-primary" id="questionTypeUpdateErrorAlert">
+						<!--Error alert-->
+					</div>
+				</form><hr>
+				<!--Update question class structure-->
+				<form action="" id="updateQuestionClassStruct" method="POST" role="form" class="font-secondary f-black">
+					<input type="" name="_method" value="put" hidden="">
 					<div class="form-group" style="font-size: 13px">
-						<label for="input">Question Type</label>
-						<select name="question_type" id="input" class="form-control qg-input" required="required">
-							<option value="Theory">Theory</option>
-							<option value="MC">MC</option>
+						<label for="input">Faculty</label>
+						<div id="updateFacultyAlert"></div>
+						<select name="faculty_id" id="QuestionFacultyUpdate" data-state="1" class="form-control qg-input" required="">
 						</select>
 					</div>
 					<div class="form-group" style="font-size: 13px">
-						<label>Options</label>
-						<div  class="qg-flex">
-							<div class="qg-col--xs--1">
-								<div class="radio">
-									<input type="radio" name="answer" id="input" value="option_1">
-								</div>
-							</div>
-							<div class="qg-col--xs--9">
-								<input type="text" name="option_1" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="Question" title="">
-							</div>
-						</div>
-						<div  class="qg-flex">
-							<div class="qg-col--xs--1">
-								<div class="radio">
-									<input type="radio" name="answer" id="input" value="option_2">
-								</div>
-							</div>
-							<div class="qg-col--xs--9">
-								<input type="text" name="option_2" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="Question" title="">
-							</div>
-						</div>
-						<div  class="qg-flex">
-							<div class="qg-col--xs--1">
-								<div class="radio">
-									<input type="radio" name="answer" id="input" value="option_3">
-								</div>
-							</div>
-							<div class="qg-col--xs--9">
-								<input type="text" name="option_3" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="Question" title="">
-							</div>
-						</div>
-						<div  class="qg-flex">
-							<div class="qg-col--xs--1">
-								<div class="radio">
-									<input type="radio" name="answer" id="input" value="option_1">
-								</div>
-							</div>
-							<div class="qg-col--xs--9">
-								<input type="text" name="option_4" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="Question" title="">
-							</div>
-						</div>
-						<div class="qg-col--xs--10 font-primary" style="color: lightgrey">
-							Select any of the radio inputs on the left of each option to chose an answer for the question
-						</div>
+						<label for="input">Department</label>
+						<div id="updateDepartmentAlert"></div>
+						<select name="department_id" id="QuestionDepartmentUpdate" data-state="0" class="form-control qg-input" required="">
+						</select>
 					</div>
 					<div class="form-group" style="font-size: 13px">
-						<label for="input">Answer</label>
-						<input type="text" name="answer" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" placeholder="Question" title="">
+						<label for="input">Course</label>
+						<div id="updateCourseAlert"></div>
+						<select name="course_id" id="QuestionCourseUpdate" data-state="0" class="form-control qg-input" required="" >
+						</select>
 					</div>
 					<div class="form-group font-primary">
-						<button type="submit" class="btn btn-green--dark qg-btn">Submit</button>
+						<button type="submit" id="updateQuestionClassStructBtn" class="btn btn-green--dark qg-btn">Submit</button>
 					</div>
-				</form> <hr/>
-				<form method="POST" action="" class="font-primary">
+					<div class="form-group font-primary" id="upQuestClassSuccessAlert">
+						<!--Success alert-->
+					</div>
+					<div class="form-group font-primary" id="upQuestClassErrorAlert">
+						<!--Error alert-->
+					</div>
+				</form><hr/>
+				<!--Update question illustration-->
+				<form method="POST" action="" id="updateQuestionIllust" class="font-primary">
+					<input type="" name="_method" value="put" hidden="">
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Change Question Illustration</label>
-						<input type="file" name="question_illustration" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" placeholder="Question" title="">
+						<input type="file" name="illustration" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" placeholder="Question" title="">
 					</div>
 					<div class="form-group font-primary">
-						<button type="submit" class="btn btn-green--dark qg-btn">Submit</button>
+						<button type="submit" id="updateQuestionIllustBtn" class="btn btn-green--dark qg-btn">Submit</button>
+					</div>
+					<div class="form-group font-primary" id="upQuestIllustSuccessAlert">
+						<!--Success alert-->
+					</div>
+					<div class="form-group font-primary" id="upQuestIllustErrorAlert">
+						<!--Error alert-->
 					</div>
 				</form>
 			</div>
@@ -128,33 +120,36 @@
 		<!--Create New Department-->
 		<div class="qg-card" style="background: white;">
 			<h5 class="font-primary f-green" style="padding:10px"> <span> + &nbsp;</span> Create New Question</h5>
-			<div class="qg-card--content font-secondary" style="padding:10px; border-color: lightgray">
-				<form action="" method="POST" role="form" class="font-secondary f-black">
+			<div class="qg-card--content font-secondary" style="padding:10px; border-color: #f3f3f3">
+				<form action="{{ route('question.store') }}" method="POST" id="createQuestion" role="form" class="font-secondary f-black">
 					<div class="form-group">
 						<label for="question">Question</label>
-						<input type="text" name="" id="question" class="form-control qg-input" value="" required="required" placeholder="" title="">
+						<textarea  name="question" id="question" class="form-control qg-input" value="" required="required"></textarea>
+					</div>
+					<div class="form-group" style="font-size: 13px">
+						<label for="input">Faculty</label>
+						<div id="selectFacultyAlert"></div>
+						<select name="faculty_id" id="QuestionFaculty" data-state="1" class="form-control qg-input" required="required">
+							<option value=""></option>
+						</select>
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Department</label>
-						<select name="department_id" id="input" class="form-control qg-input" required="required">
+						<div id="selectDepartmentAlert"></div>
+						<select name="department_id" id="QuestionDepartment" data-state="0" class="form-control qg-input" required="required">
 							<option value=""></option>
 						</select>
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Course</label>
-						<select name="course_id" id="input" class="form-control qg-input" required="required">
-							<option value=""></option>
-						</select>
-					</div>
-					<div class="form-group" style="font-size: 13px">
-						<label for="input">Difficulty</label>
-						<select name="difficulty" id="input" class="form-control qg-input" required="required">
+						<div id="selectCourseAlert"></div>
+						<select name="course_id" id="QuestionCourse" data-state="0" class="form-control qg-input" required="required">
 							<option value=""></option>
 						</select>
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Departmental Level</label>
-						<select name="departmental_level" id="input" class="form-control qg-input" required="required">
+						<select name="department_level" id="input" class="form-control qg-input" required="required">
 							<option value="100">100</option>
 							<option value="200">200</option>
 							<option value="300">300</option>
@@ -163,69 +158,23 @@
 							<option value="600">600</option>
 						</select>
 					</div>
-					<div class="form-group" style="font-size: 13px">
-						<label for="input">Question Type</label>
-						<select name="question_type" id="input" class="form-control qg-input" required="required">
-							<option value="Theory">Theory</option>
-							<option value="MC">MC</option>
-						</select>
-					</div>
-					<div class="form-group" style="font-size: 13px">
-						<label>Options</label>
-						<div  class="qg-flex">
-							<div class="qg-col--xs--1">
-								<div class="radio">
-									<input type="radio" name="answer" id="input" value="option_1">
-								</div>
-							</div>
-							<div class="qg-col--xs--9">
-								<input type="text" name="option_1" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="Question" title="">
-							</div>
-						</div>
-						<div  class="qg-flex">
-							<div class="qg-col--xs--1">
-								<div class="radio">
-									<input type="radio" name="answer" id="input" value="option_2">
-								</div>
-							</div>
-							<div class="qg-col--xs--9">
-								<input type="text" name="option_2" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="Question" title="">
-							</div>
-						</div>
-						<div  class="qg-flex">
-							<div class="qg-col--xs--1">
-								<div class="radio">
-									<input type="radio" name="answer" id="input" value="option_3">
-								</div>
-							</div>
-							<div class="qg-col--xs--9">
-								<input type="text" name="option_3" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="Question" title="">
-							</div>
-						</div>
-						<div  class="qg-flex">
-							<div class="qg-col--xs--1">
-								<div class="radio">
-									<input type="radio" name="answer" id="input" value="option_1">
-								</div>
-							</div>
-							<div class="qg-col--xs--9">
-								<input type="text" name="option_4" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="Question" title="">
-							</div>
-						</div>
-						<div class="qg-col--xs--10 font-primary" style="color: lightgrey">
-							Select any of the radio inputs on the left of each option to chose an answer for the question
-						</div>
-					</div>
+					<question-type></question-type>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Academic Session</label>
-						<input type="number" name="answer" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" max="2099" min="1988" title="">
+						<input type="number" name="academic_session" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" max="2099" min="1988" title="">
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Question Illustration</label>
-						<input type="file" name="question_illustration" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" placeholder="Question" title="">
+						<input type="file" name="question_illustration" class="form-control qg-input">
 					</div>
 					<div class="form-group font-primary">
-						<button type="submit" class="btn btn-green--dark qg-btn">Submit</button>
+						<button type="submit" id="createQuestionBtn" class="btn btn-green--dark qg-btn">Submit</button>
+					</div>
+					<div class="form-group font-primary" id="questionCreateSuccessAlert">
+						<!--Success alert-->
+					</div>
+					<div class="form-group font-primary" id="questionCreateErrorAlert">
+						<!--Error alert-->
 					</div>
 				</form>
 			</div>
@@ -238,60 +187,26 @@
 				<div class="qg-col--xs--7">
 					<h5 class="font-primary f-green" style="padding:3px 10px"> <span> + &nbsp;</span> Manage Questions</h5>
 				</div>
-				<a href="#" class="qg-col--xs--3 qg-block qg-anchor--green f-align-center" style="font-size: 19px" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+				<a href="#" class="qg-col--xs--3 qg-block qg-anchor--green f-align-center" id="reloadQuestionBtn" style="font-size: 19px" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
 			</div>
 			<div class="qg-col--xs--10">
-				<form action="" method="" class="qg-flex">
+				<form action="{{ route('question.search') }}" method="GET" id="searchQuestion" class="qg-flex">
 					<div class="qg-col--xs--9">
-						<input type="text" name="" id="qg-landing-dp-name" class="form-control qg-input font-primary" value="" placeholder="Search questions" title="">
+						<input type="text" name="question" id="searchQuestionInput" class="form-control qg-input font-primary" value="" placeholder="Search questions" title="">
 					</div>
 					<div class="qg-col--xs--1">
-						<button type="submit" class="btn qg-btn btn-green--dark" name=""><span class="glyphicon glyphicon-search"></span></button>
+						<button type="submit" id="searchQuestionBtn" class="btn qg-btn btn-green--dark" name=""><span class="glyphicon glyphicon-search"></span></button>
 					</div>
 				</form>
 			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
-				<div class="qg-col--xs--7 qg-animate--card-content">
-					<div class="font-primary" style="padding: 10px">
-						What is the conjugate base of H2PO4-?
-					</div>
-					<div class="font-secondary" style="padding: 10px">
-						Chemistry ( CHEM 220 ) / <span class="f-green">Theory</span> / 100 level
-					</div>
-				</div>
-				<div class="qg-col--xs--3 qg-flex">
-					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-				</div>
+			<div class="qg-col--xs--10  font-primary" id="searchQuestionError">
 			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
-				<div class="qg-col--xs--7 qg-animate--card-content">
-					<div class="font-primary" style="padding: 10px">
-						How does ATP supply energy for cellular activities?
-					</div>
-					<div class="font-secondary" style="padding: 10px">
-						Physics ( PHY 220 ) / <span class="f-green">Theory</span> / 100 level
-					</div>
-				</div>
-				<div class="qg-col--xs--3 qg-flex">
-					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-				</div>
+			<div id="searchResult">
+
 			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: lightgray">
-				<div class="qg-col--xs--7 qg-animate--card-content">
-					<div class="font-primary" style="padding: 10px">
-						What is subsistent farming ?
-					</div>
-					<div class="font-secondary" style="padding: 10px">
-						Agriculture ( AGIC 220 ) / <span class="f-green">MC</span> / 100 level
-					</div>
-				</div>
-				<div class="qg-col--xs--3 qg-flex">
-					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-				</div>
-			</div>
-			<div class="qg-card--content qg-flex font-secondary" style="border-color: lightgray">
-				<div class="qg-col--xs--5" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto" ><< Previous</button></div>
-				<div class="qg-col--xs--5" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto">Next >></button></div>
+			<div class="qg-card--content qg-flex font-secondary" style="border-color: #f3f3f3">
+				<div class="qg-col--xs--5" id="QuestionPrevSearch" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto" ><< Previous</button></div>
+				<div class="qg-col--xs--5" id="QuestionNextSearch" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto">Next >></button></div>
 			</div>
 			
 		</div>
@@ -299,5 +214,6 @@
 </div>
 @endsection
 @section('script')
-<script src="{{ asset('js/course.js') }}"></script>
+<script src="{{ asset('js/create_questions.js') }}"></script>
 @endsection
+

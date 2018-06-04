@@ -16,4 +16,8 @@ class Faculty extends Model
     {
     	return $this->hasMany('QuestGen\User','faculty_id');
     }
+    public function Questions()
+    {
+        return $this->hasMany('QuestGen\Questions', 'department_id');
+    }
 }

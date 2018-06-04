@@ -16,15 +16,12 @@ class Questions extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->text('question');
-            $table->string('difficulty');
             $table->integer('department_level',false,5);
             $table->string('question_type');
             $table->string('illustration')->nullable();
-            $table->string('answer');
             $table->integer('academic_session',false,5);
             $table->integer('course_id',false)->unsigned();
             $table->integer('faculty_id',false)->unsigned();
-            $table->string('status');
             $table->integer('department_id',false)->unsigned();
             $table->timestamps();
         });

@@ -13,6 +13,11 @@ class DepartmentController extends Controller
     public $createError = ""; //confirm an unsuccesfull operation for creating new department
     public $updateSuccess = ""; //confirm a succesfull operation for updating department
     public $updateError = ""; //confirm an unsuccesfull operation for updating department
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

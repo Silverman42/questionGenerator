@@ -6,5 +6,7 @@
     "/js/course.js": "/js/course.js",
     "/js/manage_admin.js": "/js/manage_admin.js",
     "/js/restore_deactive_admins.js": "/js/restore_deactive_admins.js",
+    "/js/login.js": "/js/login.js",
+    "/js/create_questions.js": "/js/create_questions.js",
     "/css/app2.css": "/css/app2.css"
 }
