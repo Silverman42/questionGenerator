@@ -29,6 +29,8 @@ Route::get('fetch/department', 'FetchController@department');
 Route::get('fetch/course', 'FetchController@course');
 
 //Batch Question generation routes
+Route::get('/generate-question-batch/search', 'GenerateQuestionBatchController@search')->name('generate-question-batch.search');
+Route::get('/generate-question-batch/download/{id}','GenerateQuestionBatchController@download')->middleware('admin');
 Route::resource('/generate-question-batch', 'GenerateQuestionBatchController');
 
 // Question generation routes
@@ -60,11 +62,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Authentication
 Route::post('/login', 'Auth\LoginController@login')->middleware('guest')->name('login');
 Route::get('/logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout');
-Route::get('/test/page',function()
-{
-	return view('test');
-});
-Route::post('/test/',function()
-{
-	return dd(request()->post());
-});
+Route::get('/test/page','TestController@index');
+Route::get('/test/','TestController@create');

@@ -3,6 +3,38 @@
 <div class="qg-col--xs--10 font-primary" style="padding: 20px; background: white; font-size: 20px">
 	Generate Question Batch
 </div>
+<div class="modal fade" id="modal-id">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header font-primary">
+				<h4 class="modal-title">Question Paper</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form method="GET" action="" id="modalPrintQuestPaper" class="font-primary" enctype="multipart/form-data">
+					<div class="form-group font-primary">
+						<button type="submit" id="updateAdminStatusBtn" class="btn btn-block qg-btn btn-green--transparent font-secondary">Download Question Paper</button>
+					</div>
+				</form>
+				<form method="POST" action="" id="modalDeleteQuestPaper" class="font-primary" enctype="multipart/form-data">
+					<input type="" hidden="" name="_method" value="delete">
+					<div class="form-group font-primary">
+						<button type="submit" id="deleteQuestionBatchBtn" class="btn btn-block btn-red--dark qg-btn">Delete Question Paper</button>
+					</div>
+					<div class="form-group font-primary" id="deleteQuestionSuccess">
+						<!--Success alert-->
+					</div>
+					<div class="form-group font-primary" id="deleteQuestionError">
+						<!--Error alert-->
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer font-primary">
+				<button type="button" class="btn qg-btn btn-red--dark" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 <!--Genrate Question Batch Body-->
 <div class="qg-body">
 	<div class="qg-col--sm--5" style="padding: 20px">
@@ -10,7 +42,7 @@
 		<div class="qg-card" style="background: white;">
 			<h5 class="font-primary f-green" style="padding:10px"> <span> + &nbsp;</span> Generate Questions</h5>
 			<div class="qg-card--content font-secondary" style="padding:10px; border-color: #f3f3f3">
-				<form action="" method="POST" role="form" class="font-secondary f-black">
+				<form action="{{ route('generate-question-batch.store') }}" method="POST" role="form" id="createQuestionBatch" class="font-secondary f-black">
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Faculty</label>
 						<div id="selectFacultyAlert"></div>
@@ -39,7 +71,7 @@
 					</div>
 					<div class="form-group" style="font-size: 13px">
 						<label for="input">Departmental Level</label>
-						<select name="departmental_level" id="input" class="form-control qg-input" required="required">
+						<select name="department_level" id="input" class="form-control qg-input" required="required">
 							<option value="100">100</option>
 							<option value="200">200</option>
 							<option value="300">300</option>
@@ -52,7 +84,7 @@
 						<label for="input">Academic Session</label>
 						<p style="color:lightgrey">Max. academic session is 2099</p>
 						<div class="form-group">
-							<input type="number" name="" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" max="2199" min="1988" placeholder="e.g 2018" title="">
+							<input type="number" name="academic_session" id="qg-landing-dp-name" class="form-control qg-input" value="" required="required" max="2199" min="1988" placeholder="e.g 2018" title="">
 						</div>
 					</div>
 					<div class="form-group" style="font-size: 13px">
@@ -63,7 +95,13 @@
 						</select>
 					</div>
 					<div class="form-group font-primary">
-						<button type="submit" class="btn btn-green--dark qg-btn">Submit</button>
+						<button type="submit" id="createQuestionBatchBtn" class="btn btn-green--dark qg-btn">Submit</button>
+					</div>
+					<div class="form-group font-primary" id="questionCreateSuccessAlert">
+						<!--Success alert-->
+					</div>
+					<div class="form-group font-primary" id="questionCreateErrorAlert">
+						<!--Error alert-->
 					</div>
 				</form>
 			</div>
@@ -76,60 +114,26 @@
 				<div class="qg-col--xs--7">
 					<h5 class="font-primary f-green" style="padding:3px 10px"> <span> + &nbsp;</span> Manage Questions Batches</h5>
 				</div>
-				<a href="#" class="qg-col--xs--3 qg-block qg-anchor--green f-align-center" style="font-size: 19px" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+				<a href="#" id="reloadQuestionBtn" class="qg-col--xs--3 qg-block qg-anchor--green f-align-center" style="font-size: 19px" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
 			</div>
 			<div class="qg-col--xs--10">
-				<form action="" method="" class="qg-flex">
+				<form action="{{ route('generate-question-batch.search') }}" method="GET" id="searchQuestionPaper" class="qg-flex">
 					<div class="qg-col--xs--9">
-						<input type="text" name="" id="qg-landing-dp-name" class="form-control qg-input font-primary" value="" placeholder="Search question batches" title="">
+						<input type="text" name="question_paper" id="searchQuestionPaperInput" class="form-control qg-input font-primary" value="" placeholder="Search question batches" title="">
 					</div>
 					<div class="qg-col--xs--1">
-						<button type="submit" class="btn qg-btn btn-green--dark" name=""><span class="glyphicon glyphicon-search"></span></button>
+						<button type="submit" id="searchQuestionPaperBtn" class="btn qg-btn btn-green--dark" name=""><span class="glyphicon glyphicon-search"></span></button>
 					</div>
 				</form>
 			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
-				<div class="qg-col--xs--7 qg-animate--card-content">
-					<div class="font-primary" style="padding: 10px">
-						Chemistry ( CHEM 220 )
-					</div>
-					<div class="font-secondary" style="padding: 10px">
-						Physical Science/ Chemistry / <span class="f-green">Theory</span> / 100 level / 2017 session
-					</div>
-				</div>
-				<div class="qg-col--xs--3 qg-flex">
-					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
-				</div>
+			<div class="qg-col--xs--10  font-primary" id="searchQuestionError">
 			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
-				<div class="qg-col--xs--7 qg-animate--card-content">
-					<div class="font-primary" style="padding: 10px">
-						Physics ( PHY 220 )
-					</div>
-					<div class="font-secondary" style="padding: 10px">
-						Physics Department / <span class="f-green">Theory</span> / 100 level / 2017 session
-					</div>
-				</div>
-				<div class="qg-col--xs--3 qg-flex">
-					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
-				</div>
-			</div>
-			<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
-				<div class="qg-col--xs--7 qg-animate--card-content">
-					<div class="font-primary" style="padding: 10px">
-						Geology ( GEO 220 )
-					</div>
-					<div class="font-secondary" style="padding: 10px">
-						Geology Department / <span class="f-green">MC</span> / 100 level / 2017 session
-					</div>
-				</div>
-				<div class="qg-col--xs--3 qg-flex">
-					<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--5 qg-anchor--green f-align-center" title="download" style="font-size:17px"><span class="glyphicon glyphicon-download" aria-hidden="true"></span></a>
-				</div>
+			<div id="searchResult">
+				
 			</div>
 			<div class="qg-card--content qg-flex font-secondary" style="border-color: #f3f3f3">
-				<div class="qg-col--xs--5" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto" ><< Previous</button></div>
-				<div class="qg-col--xs--5" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto">Next >></button></div>
+				<div class="qg-col--xs--5" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto" id="QuestionPrevSearch" ><< Previous</button></div>
+				<div class="qg-col--xs--5" style="padding: 10px"><button class="qg-block qg-btn btn btn-green--transparent" style="margin:10px auto" id="QuestionNextSearch">Next >></button></div>
 			</div>
 			
 		</div>
