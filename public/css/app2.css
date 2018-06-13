@@ -1443,6 +1443,7 @@ form{
 @keyframes alert-fade{
 	from{
 		opacity: 1;
+		display: block;
 	}
 	to{
 		opacity: 0;
@@ -1450,5 +1451,6 @@ form{
 		height: 0px;
 		margin: 0px;
 		padding: 0px;
+		display: none;
 	}
 }

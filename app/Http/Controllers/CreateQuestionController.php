@@ -165,6 +165,9 @@ class CreateQuestionController extends Controller
             $find_question = Questions::find($id);
             $find_question->options()->createMany($option_array);
         }
+        if ($request->question_type == 'Theory') {
+            Options::where('questions_id',$id)->delete();
+        }
         $question = Questions::find($id);
         $question->question_type = $request->question_type;
         $question->save();

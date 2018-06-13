@@ -11,5 +11,6 @@
 		<input type="file" name="_file">
 		<input type="submit" name="" value="Submit">
 	</form>
+	<a href="{{ url('test') }}">Print</a>
 </body>
 </html>

@@ -18,6 +18,10 @@ class Courses extends Model
     }
     public function Questions()
     {
-        return $this->hasMany('QuestGen\Questions', 'department_id');
+        return $this->hasMany('QuestGen\Questions', 'course_id');
+    }
+    public function Generated_Questions()
+    {
+        return $this->hasMany('QuestGen\GeneratedQuestions','faculty_id');
     }
 }

@@ -324,10 +324,15 @@ var ModalDataTransfer = (function() {
             this.selectDepartmentAlert = $('#selectDepartmentAlert');
             this.selectCourseAlert = $('#selectCourseAlert') ;
 
+            this.deleteErrorAlert = $('#deleteQuestionError');
+            this.deleteSuccessAlert = $('#deleteQuestionSuccess');
+            this.deleteQuestionForm = $('#modalDeleteQuestPaper');
+            this.deleteQuestionBtn = $('#deleteQuestionBatchBtn');
+
             //Search Question
-            this.searchQuestionForm = $('#searchQuestion'); //DOM object for search Question form
-            this.searchQuestionBtn = $('#searchQuestionBtn'); //DOM object for search Question submit button
-            this.searchQuestionInput = $('#searchQuestionInput'); //DOM object for search Question input
+            this.searchQuestionForm = $('#searchQuestionPaper'); //DOM object for search Question form
+            this.searchQuestionBtn = $('#searchQuestionPaperBtn'); //DOM object for search Question submit button
+            this.searchQuestionInput = $('#searchQuestionPaperInput'); //DOM object for search Question input
             this.searchQuestionResult = $('#searchResult'); //DOM object for search Question result
             this.reloadSearchQuestion = $('#reloadQuestionBtn'); //DOM object for reloading search Question result
             this.searchNextQuestion = $('#QuestionNextSearch'); //DOM object for search Question pagination button (Next)
@@ -379,19 +384,21 @@ var ModalDataTransfer = (function() {
                         var html = '';
                         for (var datum of this.data) { //loop through the recieved data's object
                             html += `<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
-                    <div class="qg-col--xs--7 qg-animate--card-content">
-                        <div class="font-primary list-question" data-url="${appData.hostname}/question/${datum.id}" style="padding: 10px">${datum.question}</div>
-                        <div class="qg-col--xs--4 list-question-illust" data-url='${appData.hostname}/question/update/illustration/${datum.id}'>
-                            ${datum.illustration !== null ? '<img src="'+datum.illustration+'" class="qg-img--curved qg-img--responsive" >' : '' }
-                        </div>
-                        <div class="font-secondary option-url" style="padding: 10px" data-url="${appData.hostname}/option/fetch/${datum.id}">
-                           <span class="list-question-class" data-url="${appData.hostname}/question/update/class/${datum.id}"> ${datum.faculty.name}</span> / ${datum.departments.name} / ${datum.courses.name} ( ${datum.courses.course_code} ) / <span class="f-green list-question-type" data-url="${appData.hostname}/question/update/type/${datum.id}">${datum.question_type}</span> / ${datum.department_level} / <span class="list-academic-session">${datum.academic_session}</span> session 
-                        </div>
-                    </div>
-                    <div class="qg-col--xs--3 qg-flex">
-                        <a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--10 qg-anchor--green f-align-center questionModalAnchor" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                    </div>
-                </div>`
+					<div class="qg-col--xs--7 qg-animate--card-content">
+						<div class="font-primary printQuestPaper" data-url="${appData.hostname}/generate-question-batch/download/${datum.unique_id}" style="padding: 10px" >
+							${datum.courses.name} ( ${datum.courses.course_code} )
+						</div>
+						<div class="font-primary" style="padding: 10px">
+							Question-paper id - ${datum.unique_id} 
+						</div>
+						<div class="font-secondary deleteQuestPaper" data-url="${appData.hostname}/generate-question-batch/${datum.unique_id}" style="padding: 10px">
+							${datum.faculty.name} / ${datum.departments.name} / <span class="f-green">${datum.question_type}</span> / ${datum.department_level}level / ${datum.academic_session} session
+						</div>
+					</div>
+					<div class="qg-col--xs--3 qg-flex">
+						<a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--10 qg-anchor--green f-align-center QuestionModalAnchor" title="settings" style="font-size:17px"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+					</div>
+				</div>`
                         }
                         return html;
                     }
@@ -556,12 +563,25 @@ var ModalDataTransfer = (function() {
             this.submitModule.formElement = this.view.createQuestionForm;
             this.submitModule.submitButton = this.view.createQuestionBtn;
             this.submitModule.component = this.view.components;
-            this.submitModule.refreshSearch = function () {  }; //obj.refreshSearchQuestion()
+            this.submitModule.refreshSearch = function () { obj.refreshSearchQuestion() }; //
+            this.submitModule.init();
+        },
+        DeleteQuestion: function () {
+            /* Model to create new question */
+            var obj = this
+            this.view.components.success.data = "Question paper successfully deleted"
+            this.submitModule.errorAlert = this.view.deleteErrorAlert;
+            this.submitModule.successAlert = this.view.deleteSuccessAlert;
+            this.submitModule.formModule = this.formObject;
+            this.submitModule.formElement = this.view.deleteQuestionForm;
+            this.submitModule.submitButton = this.view.deleteQuestionBtn;
+            this.submitModule.component = this.view.components;
+            this.submitModule.refreshSearch = function () { obj.refreshSearchQuestion() }; //
             this.submitModule.init();
         },
         //Model for search Question Ajax states
         searchQuestion: function() {
-
+        	console.log('hello')
             this.searchAllQuestion.searchObject = this.view.searchQuestionForm; //Input element for Question search
             var obj = this; // Assigning the Question Model instance to 'obj' variable
             obj.view.searchQuestionError.empty(); //Remove search error alert
@@ -606,49 +626,16 @@ var ModalDataTransfer = (function() {
             this.searchQuestion(); //load all Ajax asychronous states
             this.searchAllQuestion.ajaxReq(); //Perform Ajax request without refreshing pagination
         },
-        //Load question options to modal
-        LoadOptions: function(mainObject){
-            mainObject.view.optionObj.empty(); //Empty the options html object 
-            var questionType = ModalDataTransfer.domObject.parent().parent().find($('.list-question-type')).text()
-            var optionURL = ModalDataTransfer.domObject.parent().parent().find($('.option-url')).data('url')
-            if (questionType == 'MC') { //Check if the question type is Multiple choice
-                mainObject.loadOptions.action = optionURL; //url for option request
-                mainObject.loadOptions.method = 'GET'; //url for button request
-                mainObject.loadOptions.beforeAjaxReq = function() {
-                    mainObject.view.optionObj.html('<i style="color:green;font-size:14px">loading options.....</i>'); //alert message during ajax request
-                }
-                mainObject.loadOptions.successfullAjaxReq = function(response) {
-                    mainObject.view.optionObj.empty(); //remove alert message after succefull ajax requestFullscreen()
-                    mainObject.view.optionComponent.success.data = response; //assigning ajax response to template object for processing
-                    mainObject.view.optionObj.html(mainObject.view.optionComponent.success.template()) //parsing the processed response to HTML
-                }
-                mainObject.loadOptions.failedAjaxReq = function() {
-                    mainObject.view.optionObj.empty(); //remove alert message after failed ajax request
-                    mainObject.view.optionObj.html(mainObject.view.optionComponent.error.template); //alert message during ajax request
-                }
-                mainObject.loadOptions.ajaxReq();
-            }
-        }
-        ,
         //Model for transfer Question data to the modal
         transferQuestionData: function(domObject) {
             /* body... */
             var obj = this;
             ModalDataTransfer.domObject = domObject;
             ModalDataTransfer.headerData = ''; //Data to be transfered to the modal's header
-            ModalDataTransfer.formActionData = {
-                '#updateQuestion': $('.list-question'),
-                '#updateQuestionIllust': $('.list-question-illust'),
-                '#updateQuestionType': $('.list-question-type'),
-                '#updateQuestionClassStruct': $('.list-question-class'),
-            }; //Data to be transfered to the action attribute of the modal's form
-            ModalDataTransfer.inputData = {
-                '#modal-question': $('.list-question'),
-                '#modal-academic-session': $('.list-academic-session'),
-            }; //Data to be transfered to the input's value of the modal's form
-            ModalDataTransfer.fetchData = function() {
-                obj.LoadOptions(obj);
-            }
+            ModalDataTransfer.formActionData = { //Data to be transfered to the action attribute of the modal's form
+                '#modalDeleteQuestPaper': $('.deleteQuestPaper'),
+                '#modalPrintQuestPaper': $('.printQuestPaper')
+            }; 
             ModalDataTransfer.init(); //perform the transfer
         }
     };
@@ -740,10 +727,19 @@ var ModalDataTransfer = (function() {
         //Controller to tranfer data from downloaded Questions to modal
         transferQuestionData: function() {
             var obj = this;
-            this.view.searchQuestionResult.on('click', '.questionModalAnchor', function(e) {
+            this.view.searchQuestionResult.on('click', '.QuestionModalAnchor', function(e) {
                 e.preventDefault();
                 var obj1 = $(this);
                 obj.model.transferQuestionData(obj1);
+            })
+            return obj;
+        },
+        deleteQuestionPaper: function () {
+        	var obj = this;
+            this.view.deleteQuestionBtn.click(function(e) {
+                e.preventDefault();
+                var obj1 = $(this);
+                obj.model.DeleteQuestion();
             })
             return obj;
         },
@@ -752,13 +748,18 @@ var ModalDataTransfer = (function() {
                 .QuestionDeptSelect()
                 .QuestionCourseSelect()
                 .createQuestion()
-                /*
-                .loadQuestion()
                 .searchQuestion()
                 .refreshSearch()
                 .nextSearchPaginate()
                 .prevSearchPaginate()
+                .loadQuestion()
                 .transferQuestionData()
+                .deleteQuestionPaper()
+                /*
+                .searchQuestion()
+                .refreshSearch()
+                .nextSearchPaginate()
+                .prevSearchPaginate()
                 .updateQuestion()
                 .updateQuestionClass()
                 .updateQuestionIllust()
