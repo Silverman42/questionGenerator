@@ -16,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
         //
          Schema::defaultStringLength(191);
          view()->share('deptCreateSuccess', $value = "");
+         if ($this->app->environment() == 'production') {
+            URL::forceScheme('https');
+        }
     }
 
     /**
