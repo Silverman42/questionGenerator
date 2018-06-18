@@ -15,8 +15,4 @@ class IndexController extends Controller
     {
     	return view('authentication.index');
     }
-    public function password_recovery()
-    {
-    	return view('authentication.recover_password');
-    }
 }

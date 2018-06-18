@@ -1,4 +1,9 @@
 @extends('body.layout')
+
+@section('title')
+	<title>Manage Admin</title>
+@endsection
+
 @section('body')
 <div class="qg-col--xs--10 font-primary" style="padding: 20px; background: white; font-size: 20px">
 	Manage Admin

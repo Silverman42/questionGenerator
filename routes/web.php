@@ -12,17 +12,30 @@
 */
 
 Route::get('/', 'IndexController@index')->name('index');
-Route::get('/recover-password', 'IndexController@password_recovery')->name('password_recovery');
+
+//Recover password
+Route::get('/recover-password', 'Auth\ForgotPasswordController@password_recovery')->name('password_recovery');
+Route::post('/create_token', 'Auth\ForgotPasswordController@create_token')->name('create_token');
+
+//Change password
+Route::get('/reset-password/{id}', 'Auth\ResetPasswordController@reset_password')->name('reset_password');
+Route::post('/update-password', 'Auth\ResetPasswordController@update_password')->name('update_password');
+
+//Dashboard
 Route::get('/dashboard','DashboardController@index')->name('dashboard');
+
 //Courses Routes
 Route::get('courses/search', 'CourseController@search')->name('courses.search');
 Route::resource('/courses', 'CourseController')->only(['index','update','store','destroy']);
+
 //Department Routes
 Route::get('departments/search', 'DepartmentController@search')->name('department.search');
 Route::resource('/departments', 'DepartmentController')->only(['index','update','store','destroy']);
+
 //Faculty routes
 Route::get('faculty/search', 'FacultyController@search')->name('faculty.search');
 Route::resource('/faculty', 'FacultyController')->only(['index','update','store','destroy']);
+
 //Data Fetch routes
 Route::get('fetch/faculty', 'FetchController@faculty');
 Route::get('fetch/department', 'FetchController@department');

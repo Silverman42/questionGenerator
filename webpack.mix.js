@@ -21,5 +21,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .scripts(['resources/assets/js/modules.js', 'resources/assets/js/app/sidebar.js', 'resources/assets/js/app/login.js'], 'public/js/login.js')
     .scripts(['resources/assets/js/modules.js', 'resources/assets/js/app/sidebar.js', 'resources/assets/js/app/create_questions.js'], 'public/js/create_questions.js')
     .scripts(['resources/assets/js/modules.js', 'resources/assets/js/app/sidebar.js', 'resources/assets/js/app/generate_question_batch.js'], 'public/js/generate_question_batch.js')
+    .scripts(['resources/assets/js/modules.js', 'resources/assets/js/app/sidebar.js', 'resources/assets/js/app/dashboard.js'], 'public/js/dashboard.js')
+    .scripts(['resources/assets/js/modules.js', 'resources/assets/js/app/reset_password.js'], 'public/js/reset_password.js')
+    .scripts(['resources/assets/js/modules.js', 'resources/assets/js/app/recover_password.js'], 'public/js/recover_password.js')
     .styles('resources/assets/sass/app.css', 'public/css/app2.css');
 mix.browserSync('localhost:8000');

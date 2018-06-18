@@ -15,7 +15,7 @@ class TestController extends Controller
 
     public function create(Request $request)
     {
-    	$questions = Questions::with(['options'])->where('question_type','MC')->inRandomOrder()->take(20)->get();
+    	$questions = Questions::with(['options'])->whereIn('id','MC')->get();
     	$question_to_array = $questions->toArray();
     	$question_id_array = array_map(function($question){ return $question['id'] ; }, $question_to_array);
     	$pdf = PDF::loadView('print',['questions'=>$questions]);

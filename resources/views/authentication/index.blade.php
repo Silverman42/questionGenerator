@@ -1,4 +1,9 @@
 @extends('authentication.layout')
+
+@section('title')
+	<title>University of Nigeria, Nsukka::Question Portal</title>
+@endsection
+
 @section('auth')
 <div class="col-sm-12 qg-landing-sign-in" id="sign-in">
 	<div class="col-xs-12 font-primary">
@@ -27,4 +32,9 @@
 		</div>
 	</form>
 </div>
+@endsection
+
+@section('script')
+<!-- customJs -->
+	<script src="{{ asset('js/login.js') }}"></script>
 @endsection
