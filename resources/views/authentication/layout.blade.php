@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf_token" content="{{ csrf_token() }}">
-		<title>Title Page</title>
+		@yield('title')
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 		<link href="http://www.fontspace.com/arro/vegur?text=&fontsize=26" rel="stylesheet">
@@ -40,8 +40,7 @@
 		</div>
 		<!-- jQuery -->
 		<script src="{{ asset('js/app.js') }}"></script>
-		<!-- customJs -->
-		<script src="{{ asset('js/login.js') }}"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		@yield('script')
 	</body>
 </html>

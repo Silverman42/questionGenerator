@@ -9,5 +9,8 @@
     "/js/login.js": "/js/login.js",
     "/js/create_questions.js": "/js/create_questions.js",
     "/js/generate_question_batch.js": "/js/generate_question_batch.js",
+    "/js/dashboard.js": "/js/dashboard.js",
+    "/js/reset_password.js": "/js/reset_password.js",
+    "/js/recover_password.js": "/js/recover_password.js",
     "/css/app2.css": "/css/app2.css"
 }

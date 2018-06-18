@@ -126,11 +126,14 @@ class GenerateQuestionBatchController extends Controller
     public function download(Request $request, $id)
     {
         $question_paper = NQP::with(['courses','departments','faculty'])->where('unique_id',$id)->first();
-        $question_to_array = explode(',', $question_paper->question_id_array);
-        $questions = Questions::with(['options'])->whereIn('id',$question_to_array)->get();
-        $question_count = 1;
-        $pdf = PDF::loadView('print',['questions'=>$questions,'question_details'=>$question_paper,'count' => $question_count]);
-        return $pdf->download('question_paper.pdf');
+        if (isset($question_paper->question_id_array)) {
+            $question_to_array = explode(',', $question_paper->question_id_array);
+            $questions = Questions::with(['options'])->whereIn('id',$question_to_array)->get();
+            $question_count = 1;
+            $pdf = PDF::loadView('print',['questions'=>$questions,'question_details'=>$question_paper,'count' => $question_count]);
+            return $pdf->download('question_paper.pdf');
+        }
+        return response('Does not exist',404);
     }
 
     /**
