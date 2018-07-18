@@ -41,9 +41,14 @@
 					<p style="padding: 10px">
 						<span class="font-secondary">Course - </span>{{ Auth::user()->course_id == null ? 'None' : Auth::user()->courses->name }}
 					</p>
+					<div style="padding: 10px">	
+						<a href="{{ route('logout') }}" class="btn btn-block qg-btn btn-red--dark font-primary" title="Logout">
+							<i class="fas fa-sign-out-alt"></i> Logout
+						</a>
+					</div>
 				</div>
 				<div class="modal-footer font-primary">
-					<button type="button" class="btn qg-btn btn-red--dark" data-dismiss="modal">Close</button>
+					<button type="button" class="btn qg-btn btn-red--transparent" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
@@ -53,12 +58,7 @@
 			<nav class="qg-sidebar" id="js-qg-sidebar">
 				<div class="qg-sidebar--remove-icon f-align-center" id="js-qg-sidebar--remove-icon"> X </div>
 				<div class="qg-sidebar--profile">
-					<img src="{{ Auth::user()->avatar }}">
-					<div style="font-size: 17px; padding: 15px">
-						<p class="f-green font-primary">Welcome, {{ Auth::user()->surname.' '.Auth::user()->firstname }}</p>
-						<a href="{{ route('logout') }}" class="btn btn-red--dark qg-btn font-secondary" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
-						<a href="#modal-1" data-toggle="modal" class="btn qg-btn btn-green--transparent font-secondary" title="View profile"><span class="glyphicon glyphicon-user"></span></a>
-					</div>
+					<!--Logo!-->
 				</div>
 				<div style="font-size: 13px" class="qg-sidebar--link font-primary" id="js-qg-sidebar--link">
 					<a class="{{ URL::current() == url('/dashboard') ? 'active' : '' }}" href="{{ url('/dashboard') }}"> Dashboard</a>
@@ -87,16 +87,20 @@
 			</nav>
 			<div class="qg-subcontainer" id="js-qg-subcontainer">
 				<div class="qg-header qg-flex font-primary f-white">
-					<span>
-						<button class="qg-burger" id="js-qg-burger">
-						<div></div>
-						<div></div>
-						<div></div>
-						</button>
-					</span>
-					<span>
+					<div class="qg-col--xs--1 qg-col--md--0">
+						<a href="" id="js-qg-burger" class="qg-burger">
+							<i class="fas fa-bars"></i>
+						</a>
+					</div>
+					<div class="qg-col--xs--8 qg-col--md--9 " style="padding-left: 12px; padding-top: 5px">
 						University Of Nigeria, Nsuka
-					</span>
+					</div>
+					<div class="qg-col--xs--1">
+						<a href="#modal-1" data-toggle="modal" style="outline: none">
+							<img src="{{ Auth::user()->avatar }}" class="qg-img--small qg-img--circle" style="border:2px solid white">
+						</a>
+
+					</div>
 				</div>
 				@yield('body')
 			</div>

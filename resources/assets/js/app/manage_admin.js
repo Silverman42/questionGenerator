@@ -97,11 +97,11 @@
                     template: function() {
                         var html = '';
                         for (var datum of this.data) { //loop through the recieved data's object
-                            html += `<div class="qg-card--content qg-flex font-secondary " style="border-color: #f3f3f3">
-    <div class="qg-col--xs--1 qg-animate--card-content AdminDURL" data-url="${appData.hostname}/admin/deactivate/${datum.id}">
-        <img class="qg-img--small AdminAvatarURL" data-url="${appData.hostname}/admin/update-avatar/${datum.id}" src="${datum.avatar}">
+                            html += `<div class="qg-card--content qg-flex qg-flex--wrap font-secondary " style="border-color: #f3f3f3">
+    <div class="qg-col--xs--2 qg-col--md--1 qg-animate--card-content AdminDURL" data-url="${appData.hostname}/admin/deactivate/${datum.id}">
+        <img class="qg-img--small AdminAvatarURL" style="margin-top: 10px" data-url="${appData.hostname}/admin/update-avatar/${datum.id}" src="${datum.avatar}">
     </div>
-    <div class="qg-col--xs--7 qg-animate--card-content AdminRoleURL" data-url="${appData.hostname}/admin/update-role/${datum.id}">
+    <div class="qg-col--xs--6 qg-col--md--7 qg-animate--card-content AdminRoleURL" data-url="${appData.hostname}/admin/update-role/${datum.id}">
         <div class="font-primary js-modal-name AdminData" data-url="${appData.hostname}/admin/update/${datum.id}" style="padding: 10px">
             <span class="AdminFirstname">${datum.firstname}</span>&nbsp;<span class="AdminSurname">${datum.surname}</span>
         </div>
@@ -109,7 +109,7 @@
             <b>${datum.role}</b> / <span class="f-green js-modal-email AdminEmail">${datum.email}</span> / ${datum.faculty_id == null ? 'No Faculty' : datum.faculty.name } /${datum.department_id == null ? 'No Department' : datum.departments.name } / ${datum.course_id == null ? 'No Course' : datum.courses.course_code }
         </div>
     </div>
-    <div class="qg-col--xs--2 qg-flex">
+    <div class="qg-col--xs--10 qg-col--md--2 qg-flex">
         <a href="#modal-id" data-toggle="modal" class="qg-block qg-col--xs--10 qg-anchor--green f-align-center AdminModalAnchor" title="Edit" style="font-size:17px"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
     </div>
 </div>`

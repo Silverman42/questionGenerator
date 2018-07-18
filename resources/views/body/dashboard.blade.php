@@ -5,7 +5,7 @@
 @endsection
 
 @section('body')
-<div class="qg-col--xs--10 font-primary" style="padding: 20px; background: white; font-size: 20px">
+<div class="qg-col--xs--10 font-primary" style="padding: 20px; background: white; font-size: 20px; border-bottom: 0.8px solid rgb(217, 217, 217)">
 	Dashboard
 </div>
 <!--Dashboard Body-->

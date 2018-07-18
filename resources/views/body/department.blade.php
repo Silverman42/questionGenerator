@@ -5,7 +5,7 @@
 @endsection
 
 @section('body')
-<div class="qg-col--xs--10 font-primary" style="padding: 20px; background: white; font-size: 20px" id="js-department">
+<div class="qg-col--xs--10 font-primary" style="padding: 20px; background: white; font-size: 20px;border-bottom: 0.8px solid rgb(217, 217, 217)" id="js-department">
 	Department
 </div>
 <!--Department management modal-->
@@ -47,7 +47,7 @@
 				</form>
 			</div>
 			<div class="modal-footer font-primary">
-				<button type="button" class="btn qg-btn btn-red--dark" data-dismiss="modal">Close</button>
+				<button type="button" class="btn qg-btn btn-red--transparent" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -92,11 +92,9 @@
 	<div class="qg-col--sm--5" style="padding: 20px">
 		<!--Manage Department-->
 		<div class="qg-card" style="background: white;">
-			<div class="qg-col--xs--10 qg-flex font-primary">
-				<div class="qg-col--xs--7">
-					<h5 class="font-primary f-green" style="padding:3px 10px"> <span> + &nbsp;</span> Manage Departments</h5>
-				</div>
-				<a href="#" class="qg-col--xs--3 qg-block qg-anchor--green f-align-center" style="font-size: 19px" id="reloadDepartmentBtn" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+
+			<div class="qg-col--xs--10" style="border-bottom: 0.7px solid #f2f2f2">
+				<h5 class="font-primary f-green" style="padding:10px"> <span> + &nbsp;</span> Manage Departments</h5>	
 			</div>
 			<div class="qg-col--xs--10">
 				<form action="{{ route('department.search') }}" method="GET" id="searchDepartment" class="qg-flex">
@@ -104,9 +102,12 @@
 						<input type="text" name="department" id="searchDepartmentInput" class="form-control qg-input font-primary" value="" placeholder="Search departments" title="">
 					</div>
 					<div class="qg-col--xs--1">
-						<button type="submit" id="searchDepartmentBtn" class="btn qg-btn btn-green--dark" name=""><span class="glyphicon glyphicon-search"></span></button>
+						<button type="submit" id="searchDepartmentBtn"  class="btn btn-green--dark" name=""><span class="glyphicon glyphicon-search"></span></button>
 					</div>
 				</form>
+			</div>
+			<div class="qg-col--xs--10 f-align-center">
+				<a href="#" class="btn qg-btn btn-green--transparent f-align-center" id="reloadDepartmentBtn" style="font-size: 19px;margin-bottom: 5px" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
 			</div>
 			<div class="qg-col--xs--10  font-primary" id="searchDepartmentError">
 			</div>
