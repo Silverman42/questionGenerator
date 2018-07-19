@@ -395,7 +395,9 @@ body{
 }
 /*landing page*/
 .qg-landing-background{
-	background: url(../img/pattern.png);
+	background: url(../img/pattern.svg) no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 .qg-landing{
 	display: flex !important;
