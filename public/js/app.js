@@ -28635,7 +28635,7 @@ var render = function() {
                         "button",
                         {
                           staticClass:
-                            "btn qg-btn btn-red--dark font-secondary",
+                            "btn btn-red--transparent font-secondary",
                           on: {
                             click: function($event) {
                               $event.preventDefault()

@@ -13,7 +13,7 @@
 	<div class="qg-col--sm--5" style="padding: 20px">
 		<!--Card for Dashboard Details-->
 		<div class="qg-card" style="background: white">
-			<div class="font-primary qg-col--xs--10 qg-flex" style="padding:10px">
+			<div class="font-primary qg-flex" style="padding:10px">
 				<div class="qg-col--xs--7">
 					<span> # &nbsp;</span>
 					<span class="f-green">Total Courses</span>
@@ -22,7 +22,7 @@
 					<span class="badge badge-secondary">3</span>
 				</div>
 			</div>
-			<div class="font-primary qg-col--xs--10 qg-flex" style="padding:10px">
+			<div class="font-primary qg-flex" style="padding:10px">
 				<div class="qg-col--xs--7">
 					<span> # &nbsp;</span>
 					<span class="f-green">Departments</span>
@@ -31,16 +31,16 @@
 					<span class="badge badge-secondary">6</span>
 				</div>
 			</div>
-			<div class="font-primary qg-col--xs--10 qg-flex" style="padding:10px">
+			<div class="qg-flex font-primary" style="padding:10px">
 				<div class="qg-col--xs--7">
 					<span> # &nbsp;</span>
 					<span class="f-green">Broad Questions</span>
 				</div>
 				<div class="qg-col--xs--3">
-					<span class="badge badge-secondary">3</span>
+					<span class="badge badge-secondary">22</span>
 				</div>
 			</div>
-			<div class="font-primary qg-col--xs--10 qg-flex" style="padding:10px">
+			<div class="font-primary  qg-flex" style="padding:10px">
 				<div class="qg-col--xs--7">
 					<span> # &nbsp;</span>
 					<span class="f-green">Faculties</span>

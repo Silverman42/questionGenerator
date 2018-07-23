@@ -27,7 +27,7 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'active'=> 1])){
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $success = 'Login successfull';
             if($request->ajax()){
                 return response()->json($success, 200);

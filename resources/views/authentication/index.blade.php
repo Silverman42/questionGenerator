@@ -1,7 +1,7 @@
 @extends('authentication.layout')
 
 @section('title')
-	<title>University of Nigeria, Nsukka::Question Portal</title>
+	<title>Questgen</title>
 @endsection
 
 @section('auth')
@@ -27,6 +27,12 @@
 		<div class="form-group font-primary" id="loginErrorAlert">
 			<!--Error alert-->
 		</div>
+		@if (!empty(session('message')))
+			<div class="alert alert-danger">
+			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			    <strong>Error!!</strong> <p>{{session('message')}}</p>
+			</div>
+		@endif
 		<div class="form-group font-primary">
 			<button type="submit" class="btn btn-green--dark qg-btn" id="loginBtn">Submit</button>
 		</div>

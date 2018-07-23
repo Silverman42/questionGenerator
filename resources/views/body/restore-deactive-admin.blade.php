@@ -14,7 +14,7 @@
 		<div class="qg-card" style="background: white;">
 			<!--Search Admin-->
 			<div class="qg-col--xs--10">
-				<form action="{{ route('admin.search') }}" method="" class="qg-flex" id="searchAdmin">
+				<form action="{{ route('admin.search.deactivated') }}" method="" class="qg-flex" id="searchAdmin">
 					<div class="qg-col--xs--9">
 						<input type="text" name="admin" id="searchAdminInput" class="form-control qg-input font-primary" value="" placeholder="Search Administrators" title="">
 					</div>
@@ -28,25 +28,6 @@
 				<a href="#" class="btn qg-btn btn-green--transparent f-align-center" id="reloadAdminBtn" style="font-size: 19px" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
 			</div>
 			<!--Search Error Alert-->
-			<div class="qg-col--xs--10  font-primary" id="searchAdminError">
-			</div>
-
-			<div class="qg-col--xs--10 qg-flex font-primary">
-				<div class="qg-col--xs--7">
-				</div>
-				<a href="#" id="reloadAdminBtn" class="qg-col--xs--3 qg-block qg-anchor--green f-align-center" style="font-size: 19px;margin-bottom: 5px" title="Refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
-			</div>
-			<!--Search Administrator-->
-			<div class="qg-col--xs--10">
-				<form action="{{ route('admin.search.deactivated') }}" method="" class="qg-flex" id="searchAdmin">
-					<div class="qg-col--xs--9">
-						<input type="text" name="admin" id="searchAdminInput" class="form-control qg-input font-primary" value="" placeholder="Search Administrators" title="">
-					</div>
-					<div class="qg-col--xs--1">
-						<button type="submit" class="btn qg-btn btn-green--dark" id="searchAdminBtn" name=""><span class="glyphicon glyphicon-search"></span></button>
-					</div>
-				</form>
-			</div>
 			<div class="qg-col--xs--10  font-primary" id="searchAdminError">
 			</div>
 			<div id="searchResult">

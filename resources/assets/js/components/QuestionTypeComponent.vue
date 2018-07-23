@@ -19,7 +19,7 @@
 				<input type="text" name="options[]" id="qg-landing-dp-name" class="form-control qg-input" value=""  placeholder="option" title="">
 			</div>
 			<div class="qg-col--xs--2">
-				<button v-if="index > 0" v-on:click.prevent="removeOption(index)" class="btn qg-btn btn-red--dark font-secondary">
+				<button v-if="index > 0" v-on:click.prevent="removeOption(index)" class="btn btn-red--transparent font-secondary">
 				<span class="glyphicon glyphicon-remove"></span>
 				</button>
 			</div>

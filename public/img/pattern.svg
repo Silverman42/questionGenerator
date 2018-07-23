@@ -1,61 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW X7 -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="6in" height="4in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 6000 4000"
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1800px" height="1200px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1800 1200"
  xmlns:xlink="http://www.w3.org/1999/xlink">
  <defs>
   <style type="text/css">
    <![CDATA[
-    .str0 {stroke:#373435;stroke-width:6.94488}
-    .str1 {stroke:#373435;stroke-width:3}
+    .str0 {stroke:#373435;stroke-width:2.08346}
     .fil0 {fill:none}
-    .fil1 {fill:#606062}
-    .fil2 {fill:#4B4B4D}
-    .fil3 {fill:#444445}
-    .fil4 {fill:#353536}
-    .fil5 {fill:url(#id3)}
+    .fil1 {fill:#444445}
+    .fil2 {fill:#373737}
+    .fil3 {fill:#2E2D2E}
    ]]>
   </style>
    <clipPath id="id0">
-    <path d="M-18 1l6026 0 0 3998 -6026 0 0 -3998z"/>
+    <path d="M-2 -7l1807 0 0 1200 -1807 0 0 -1200z"/>
    </clipPath>
-   <clipPath id="id1">
-    <path d="M6725 178l6026 0 0 3998 -6026 0 0 -3998z"/>
-   </clipPath>
-   <clipPath id="id2">
-    <path d="M6725 178l6026 0 0 3998 -6026 0 0 -3998zm3013 0m3013 1999m-3013 1999m-3013 -1999"/>
-   </clipPath>
-  <linearGradient id="id3" gradientUnits="userSpaceOnUse" x1="2742.63" y1="2069.13" x2="7479.03" y2="2069.13">
-   <stop offset="0" style="stop-opacity:0.4; stop-color:#68998F"/>
-   <stop offset="0.4" style="stop-opacity:0.2; stop-color:#64AB85"/>
-   <stop offset="1" style="stop-opacity:0.2; stop-color:#5FBE7A"/>
-  </linearGradient>
  </defs>
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <line class="fil0 str0" x1="-737" y1="-350" x2="-737" y2= "-350" />
+  <line class="fil0 str0" x1="-221" y1="-105" x2="-221" y2= "-105" />
  </g>
  <g id="Layer_x0020_2">
   <metadata id="CorelCorpID_1Corel-Layer"/>
-  <polygon class="fil1" points="-18,1 6008,1 6008,3999 -18,3999 "/>
+  <polygon class="fil1" points="-2,-7 1805,-7 1805,1193 -2,1193 "/>
   <g style="clip-path:url(#id0)">
-   <g id="_2920573794240">
-    <path id="1" class="fil2" d="M6165 454l0 3579 -6297 0 0 -3405c736,451 1504,443 3078,230 636,-87 2110,-416 3219,-404z"/>
-    <path class="fil3" d="M6165 1721l0 3579 -6297 0 0 -3405c736,451 1504,443 3078,229 636,-86 2110,-415 3219,-403z"/>
-    <path class="fil4" d="M6165 2721l0 3579 -6297 0 0 -3405c736,451 1504,443 3078,229 636,-86 2110,-415 3219,-403z"/>
-    <path class="fil5" d="M5109 -245c1309,0 2370,1036 2370,2314 0,1278 -1061,2315 -2370,2315 -1084,0 -1998,-711 -2280,-1682 -3,-10 -2,-19 3,-28 6,-9 13,-15 23,-18l601 -157c60,-15 96,-77 81,-138l0 0c-16,-60 -78,-96 -138,-80l-589 153c-11,3 -21,1 -30,-5 -9,-6 -15,-15 -16,-25 -7,-50 -13,-99 -17,-149 -2,-18 10,-35 27,-39l904 -236c61,-16 97,-78 81,-138l0 0c-15,-60 -78,-97 -138,-81l-832 217c-12,3 -23,1 -33,-7 -9,-8 -14,-19 -13,-31 2,-41 6,-82 10,-123 2,-16 12,-28 28,-32l675 -176c60,-15 96,-78 81,-138l0 0c-16,-60 -78,-96 -138,-81l-539 141c-13,3 -26,0 -35,-10 -10,-10 -13,-23 -10,-36 265,-995 1192,-1730 2294,-1730z"/>
+   <g id="_2920567933952">
+    <rect class="fil2" transform="matrix(9.97521 -3.25848 -8.46101 -3.84163 210.28 1184.98)" width="111" height="90.2504"/>
+    <rect class="fil3" transform="matrix(9.97521 -3.25848 -8.46101 -3.84163 210.28 1091)" width="111" height="90.2504"/>
+    <rect class="fil2" transform="matrix(9.97521 -3.25848 -8.46101 -3.84163 210.28 997.014)" width="111" height="90.2504"/>
+    <rect class="fil3" transform="matrix(9.97521 -3.25848 -8.46101 -3.84163 210.28 894.485)" width="111" height="90.2504"/>
+    <rect class="fil2" transform="matrix(9.97521 -3.25848 -8.46101 -3.84163 210.28 809.045)" width="111" height="90.2504"/>
+    <rect class="fil3" transform="matrix(9.97521 -3.25848 -8.46101 -3.84163 210.28 706.517)" width="111" height="90.2504"/>
+    <rect class="fil2" transform="matrix(9.97521 -3.25848 -8.46101 -3.84163 210.28 603.989)" width="111" height="90.2504"/>
+    <rect class="fil3" transform="matrix(9.97521 -3.25848 -8.46101 -3.84163 210.28 501.46)" width="111" height="90.2504"/>
    </g>
   </g>
-  <polygon class="fil0" points="-18,1 6008,1 6008,3999 -18,3999 "/>
-  <polygon class="fil3" points="6725,178 12751,178 12751,4176 6725,4176 "/>
-  <g style="clip-path:url(#id1)">
-   <g id="_2920573790784">
-   </g>
-  </g>
-  <polygon id="1" class="fil0" points="6725,178 12751,178 12751,4176 6725,4176 "/>
-  <g style="clip-path:url(#id2)">
-   <path id="2" class="fil0 str1" d="M6725 178l6026 3998m0 -3998l-6026 3998"/>
-  </g>
+  <polygon class="fil0" points="-2,-7 1805,-7 1805,1193 -2,1193 "/>
  </g>
 </svg>

@@ -3,9 +3,13 @@
 namespace QuestGen\Http\Controllers;
 
 use Illuminate\Http\Request;
-use QuestGen\Faculty as Faculty;
-use QuestGen\Departments as Department;
+use QuestGen\AppEntities\Faculty as FacultyEntity;
+use QuestGen\AppEntities\Departments as DepartmentEntity;
+use QuestGen\AppEntities\Courses as CourseEntity;
+use QuestGen\AdminActivities\FetchCompartment;
+
 use QuestGen\Courses as Course;
+
 
 class FetchController extends Controller
 {   
@@ -18,27 +22,20 @@ class FetchController extends Controller
     */
     public function faculty(Request $request)
     {
-    	$faculty = Faculty::all();
+        $fetchData = new FetchCompartment(new FacultyEntity,'faculty');
+    	$faculty = $fetchData->byRole();
     	return response()->json($faculty);
     }
     public function department(Request $request)
     {
-    	if ($request->has('sid')) {
-    		$request->validate([
-    			'sid'=>'integer'
-    		]);
-    		$department = Department::where('faculty_id',$request->sid)->get();
-    		return response()->json($department);
-    	}
+        $fetchData = new FetchCompartment(new DepartmentEntity,'department',$request->sid);
+        $department = $fetchData->byRole();
+        return response()->json($department);
     }
     public function course(Request $request)
     {
-    	if ($request->has('sid')) {
-    		$request->validate([
-    			'sid'=>'integer'
-    		]);
-    		$course = Course::where('department_id',$request->sid)->get();
-    		return response()->json($course);
-    	}
+        $fetchData = new FetchCompartment(new CourseEntity,'course',$request->sid);
+        $course = $fetchData->byRole();
+        return response()->json($course);
     }
 }
