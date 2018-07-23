@@ -50,7 +50,7 @@ body{
 	align-self: flex-start;
 	background: rgb(64, 64, 64);
 	overflow-y: auto;
-	overflow-x: hidden
+	overflow-x: hidden;
 	transition: left 0.8s ease-out;
 	-webkit-transition: left 0.8s ease-out;
 }
@@ -398,23 +398,20 @@ body{
 	background: url(../img/pattern.svg) no-repeat;
 	background-size: cover;
 	background-position: center;
+	padding-bottom: 20px;
 }
 .qg-landing{
-	display: flex !important;
-	display: -webkit-flex !important;
-	height: 100vh;
+	min-height: 100vh;
 }
 .qg-landing-left,.qg-landing-right{
-	width:50%;
-	height: 100%;
-	padding: 20px;
+	padding-left: 50px;
+	padding-right: 50px;
 }
 .qg-landing-left{
 
 }
 .qg-landing-right{
-	padding-left: 50px;
-	padding-right: 50px;
+
 }
 .qg-header-icon{
 	padding: 10px 10px;
@@ -456,23 +453,18 @@ body{
 .qg-landing-sign-in{
 	background: white;
 	border-radius: 8px;
-	margin-top: 60px;
 }
 .qg-landing-register{
 }
 .qg-landing-pass-recover{
 }
 @media(max-width: 768px){
-	.qg-landing-left,.qg-landing-right{
-		width:100%;
-		height: auto;
+	.qg-landing-left{
 		padding: 20px;
 	}
-	.qg-landing-left{
-		display: none;
-	}
 	.qg-landing-right{
-		background: transparent;
+		min-height: 90vh;
+		padding: 20px;
 	}
 }
 /*Anchor and buttons*/

@@ -1,7 +1,7 @@
 @extends('authentication.layout')
 
 @section('title')
-	<title>Failed password reset</title>
+	<title>Questgen::Failed password reset</title>
 @endsection
 
 @section('auth')

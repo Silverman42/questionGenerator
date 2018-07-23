@@ -21,20 +21,21 @@
 	</head>
 	<body class="qg-landing-background">
 		<div class="container-fluid" id="app">
-			<div class="qg-flex" >
-				<div class="qg-landing qg-col--lg--5">
-					<div class="qg-landing-left" style="padding-top:90px;">
-						<div class="col-sm-12 f-bold font-primary" style="padding-top:18px; color: white;">
-							<p class="f-green" style="font-size: 30px; line-height: 30px;">University of Nigeria, Nsukka</p>
-							<h1 style="line-height: 60px; font-size: 60px !important">Question Generation Portal</h1>
-						</div>
+			<div class="qg-flex qg-flex--wrap qg-landing" >
+				<div class="qg-col--xs--10">
+					<div class="qg-col--xs--4 qg-col--md--2" style="padding-left: 20px">
+						<!--logo-->
+						<img src="{{asset('img/svg/logo.svg')}}" class="qg-img--responsive">
 					</div>
-					<div class="qg-landing-right qg-col--md--5">
-						<nav class="qg-navbar-1 font-primary f-align-center f-green">
-							University of Nigeria, Nsukka
-						</nav>
-						@yield('auth')
+				</div>
+				<div class="qg-col--md--5 qg-col--xs--10 qg-landing-left">
+					<div class="col-sm-12 f-bold font-primary" style="padding-top:18px; color: white;">
+						<h1 style="line-height: 1.5em; font-size: 2.3em !important">Question Generation Portal for Tertiary institutions</h1>
+						<p>Create and organise printable question papers for <br> all faculties and departments the go !!</p>
 					</div>
+				</div>
+				<div class="qg-col--xs--10 qg-col--md--5 qg-landing-right">
+					@yield('auth')
 				</div>
 			</div>
 		</div>

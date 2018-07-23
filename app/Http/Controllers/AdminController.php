@@ -112,6 +112,7 @@ class AdminController extends Controller
 		$user = User::find($id);
 		$user->firstname = request()->firstname;
 		$user->surname = request()->surname;
+        $user->email = request()->email;
 		$user->save();
 		$success = 'Admin Data successfully updated'; 
 		return response()->json($success);

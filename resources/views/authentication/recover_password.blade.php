@@ -1,7 +1,7 @@
 @extends('authentication.layout')
 
 @section('title')
-	<title>Recover Password</title>
+	<title>Questgen::Recover Password</title>
 @endsection
 
 @section('auth')

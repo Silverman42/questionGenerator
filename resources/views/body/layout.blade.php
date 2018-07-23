@@ -57,8 +57,9 @@
 		<div class="qg-main-container" id="app">
 			<nav class="qg-sidebar" id="js-qg-sidebar">
 				<div class="qg-sidebar--remove-icon f-align-center" id="js-qg-sidebar--remove-icon"> X </div>
-				<div class="qg-sidebar--profile">
+				<div class="qg-col--xs--8" style="padding-top: 20px">
 					<!--Logo!-->
+					<img src="{{asset('img/svg/logo_alt.svg')}}" class="qg-img--responsive">
 				</div>
 				<div style="font-size: 13px" class="qg-sidebar--link font-primary" id="js-qg-sidebar--link">
 					<a class="{{ URL::current() == url('/dashboard') ? 'active' : '' }}" href="{{ url('/dashboard') }}"> Dashboard</a>
@@ -89,7 +90,7 @@
 				<div class="qg-header qg-flex font-primary f-white">
 					<div class="qg-col--xs--1 qg-col--md--0">
 						<a href="" id="js-qg-burger" class="qg-burger">
-							<i class="fas fa-bars"></i>
+							<i class="fas fa-bars">b</i>
 						</a>
 					</div>
 					<div class="qg-col--xs--8 qg-col--md--9 " style="padding-left: 12px; padding-top: 5px">

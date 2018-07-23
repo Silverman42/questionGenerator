@@ -1,6 +1,6 @@
 @extends('authentication.layout')
 @section('title')
-	<title>Reset Password</title>
+	<title>Questgen::Reset Password</title>
 @endsection
 @section('auth')
 <div class="col-sm-12 qg-landing-sign-in" id="changePassword">

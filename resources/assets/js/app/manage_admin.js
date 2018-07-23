@@ -101,7 +101,7 @@
     <div class="qg-col--xs--2 qg-col--md--1 qg-animate--card-content AdminDURL" data-url="${appData.hostname}/admin/deactivate/${datum.id}">
         <img class="qg-img--small AdminAvatarURL" style="margin-top: 10px" data-url="${appData.hostname}/admin/update-avatar/${datum.id}" src="${datum.avatar}">
     </div>
-    <div class="qg-col--xs--6 qg-col--md--7 qg-animate--card-content AdminRoleURL" data-url="${appData.hostname}/admin/update-role/${datum.id}">
+    <div class="qg-col--xs--8 qg-col--md--7 qg-animate--card-content AdminRoleURL" data-url="${appData.hostname}/admin/update-role/${datum.id}">
         <div class="font-primary js-modal-name AdminData" data-url="${appData.hostname}/admin/update/${datum.id}" style="padding: 10px">
             <span class="AdminFirstname">${datum.firstname}</span>&nbsp;<span class="AdminSurname">${datum.surname}</span>
         </div>
